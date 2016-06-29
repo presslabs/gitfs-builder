@@ -1,0 +1,10 @@
+Index: gitfs-0.1.1~git1+84197b1/Makefile
+===================================================================
+--- gitfs-0.1.1~git1+84197b1.orig/Makefile	2014-10-14 13:07:25.000000000 +0000
++++ gitfs-0.1.1~git1+84197b1/Makefile	2014-10-14 14:13:22.634858022 +0000
+@@ -1,4 +1,4 @@
+-PREFIX:=/usr/local
++PREFIX:=/usr
+ BUILD_DIR:=build
+ VIRTUAL_ENV?=$(BUILD_DIR)/virtualenv
+ 

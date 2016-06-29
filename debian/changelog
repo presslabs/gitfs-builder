@@ -1,0 +1,92 @@
+gitfs (0.4.1-vivid~ppa6) vivid; urgency=low
+
+  * add credentials to push and fetch operations #226 (hotfix)
+
+ -- Vlad Temian <vlad@presslabs.com>  Wed, 30 Mar 2016 12:24:11 +0000
+
+gitfs (0.4.0.1-precise~ppa1) precise; urgency=low
+
+  * delete directories on force checkout #221
+  * improve logging #222
+  * retry mechanism for push #201
+  * port to python3 thanks to @justuswilhelm #199
+  * improve test running speed thanks to @rciorba
+  * improve development using vagrant
+
+ -- Vlad Temian <vlad@presslabs.com>  Tue, 29 Mar 2016 13:30:11 +0000
+
+gitfs (0.3.3-precise~ppa1) precise; urgency=low
+
+  * New upstream version 0.3.3
+
+ -- Vlad Temian <vladtemian@gmail.com>  Thu, 18 Jun 2015 04:17:56 -0400
+
+gitfs (0.3.2-precise~ppa1) precise; urgency=low
+
+  * New upstream version 0.3.2
+  * Update pygit2 to 5469f0c8
+
+ -- Vlad Temian <vladtemian@gmail.com>  Fri, 05 Jun 2015 08:41:41 -0400
+
+gitfs (0.3.1-precise~ppa4) precise; urgency=low
+
+  * Update pygit2 to bc668751
+
+ -- Vlad Temian <vladtemian@gmail.com>  Thu, 26 Feb 2015 04:02:04 -0500
+
+gitfs (0.3.1-precise~ppa2) precise; urgency=low
+
+  * New upstream release 0.3.1
+  * Update pygit to 0.22.0
+
+ -- Vlad Temian <vlad@presslabs.com>  Thu, 19 Feb 2015 09:45:45 -0500
+
+gitfs (0.2.4-precise~ppa1) precise; urgency=low
+
+  * New upstream release 0.2.4 
+
+ -- Calin Don <calin@presslabs.com>  Wed, 10 Dec 2014 11:02:20 +0000
+
+gitfs (0.2.3-precise~ppa1) precise; urgency=low
+
+  * New upstream release 0.2.3
+  * Added raven 5.1.1
+
+ -- Calin Don <calin@presslabs.com>  Thu, 13 Nov 2014 18:35:14 +0000
+
+gitfs (0.2.2-precise~ppa1) precise; urgency=low
+
+  * New upstream version 0.2.2
+
+ -- Calin Don <calin@presslabs.com>  Mon, 10 Nov 2014 16:41:31 +0000
+
+gitfs (0.2.1-precise~ppa2) precise; urgency=low
+
+  * Updated pygit2 to 0.21.4 
+
+ -- Calin Don <calin@presslabs.com>  Fri, 07 Nov 2014 14:29:23 +0000
+
+gitfs (0.2.1-precise~ppa1) precise; urgency=low
+
+  * New upstream release 0.2.1 
+
+ -- Calin Don <calin@presslabs.com>  Thu, 06 Nov 2014 19:18:04 +0000
+
+gitfs (0.2.0-precise~ppa1) precise; urgency=low
+
+  * New upstream release 0.2.0
+  * Fix entry point import
+
+ -- Calin Don <calin@presslabs.com>  Mon, 27 Oct 2014 16:56:39 +0000
+
+gitfs (0.1.2-precise~ppa1) precise; urgency=low
+
+  * New upstream release 0.1.2
+
+ -- Calin Don <calin@presslabs.com>  Thu, 23 Oct 2014 15:24:30 +0000
+
+gitfs (0.1.1-precise~ppa1) precise; urgency=low
+
+  * Initial release
+
+ -- Calin Don <calin@presslabs.com>  Wed, 15 Oct 2014 13:09:42 +0000

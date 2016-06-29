@@ -1,0 +1,13 @@
+--- a/Makefile
++++ b/Makefile
+@@ -26,8 +26,8 @@
+ uninstall:
+ 	rm -rf $(DESTDIR)$(PREFIX)/bin/gitfs
+ 
+-$(BUILD_DIR)/gitfs: $(BUILD_DIR) $(VIRTUAL_ENV)/bin/pex
+-	$(VIRTUAL_ENV)/bin/pex -r 'fusepy==2.0.2' -r 'pygit2==0.24.0' -r 'atomiclong==0.1.1' -s . -e gitfs:mount -o $(BUILD_DIR)/gitfs
++$(BUILD_DIR)/gitfs: $(BUILD_DIR)
++	/usr/bin/pex -v --cache-dir=debian/packages/ --repo=debian/packages/ -r 'fusepy==2.0.2' -r 'pygit2==0.24.0' -r 'atomiclong==0.1.1' -r 'raven==5.1.1' -r 'six==1.10.0' -s . -e gitfs:mount -o $(BUILD_DIR)/gitfs
+ 
+ $(VIRTUAL_ENV)/bin/pex: virtualenv
+ 	$(VIRTUAL_ENV)/bin/pip install pex wheel

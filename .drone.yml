@@ -1,0 +1,36 @@
+build:
+  build-source:
+    image: presslabs/debuilder:$$SERIES
+    environment:
+      DEBEMAIL: "bot@presslabs.com"
+      DEBFULLNAME: "Igor Debot"
+    commands:
+      #- |
+      #  echo "$$PGP_KEY" | gpg --import
+      #- gpg --list-keys --fingerprint --with-colons bot@presslabs.com | sed -E -n -s 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
+      - make clean
+      - make build
+
+  deploy-master:
+    image: presslabs/debuilder:$$SERIES
+    commands:
+      - |
+        echo "$$PGP_KEY" | gpg --import
+      - gpg --list-keys --fingerprint --with-colons bot@presslabs.com | sed -E -n -s 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
+      - cd build && dput ppa:presslabs/testing-ppa *.changes
+    when:
+      branch: master
+
+  deploy-tag:
+    image: presslabs/debuilder:$$SERIES
+    commands:
+      - |
+        echo "$$PGP_KEY" | gpg --import
+      - gpg --list-keys --fingerprint --with-colons bot@presslabs.com | sed -E -n -s 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
+      - cd build && dput ppa:presslabs/ppa *.changes
+    when:
+      event: tag
+
+matrix:
+  SERIES:
+    - precise

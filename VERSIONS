@@ -1,0 +1,25 @@
+# vim: set ft=make:
+
+GITFS_VERSION := 0.4.1
+
+DEPENDENCIES := libgit2
+LIBGIT2_VERSION := 0.24.1
+
+PACKAGES := atomiclong cffi fusepy pycparser pygit2 raven six
+ATOMICLONG_VERSION := 0.1.1
+CFFI_VERSION := 1.7.0
+FUSEPY_VERSION := 2.0.2
+PYCPARSER_VERSION := 2.10
+PYGIT2_VERSION := 0.24.0
+RAVEN_VERSION := 5.1.1
+SIX_VERSION := 1.10.0
+
+GITFS_URL := https://github.com/Presslabs/gitfs/archive/$(GITFS_VERSION).tar.gz
+LIBGIT2_URL := https://github.com/libgit2/libgit2/archive/v$(LIBGIT2_VERSION).tar.gz
+ATOMICLONG_URL := https://pypi.python.org/packages/source/a/atomiclong/atomiclong-$(ATOMICLONG_VERSION).tar.gz
+CFFI_URL := https://pypi.python.org/packages/83/3c/00b553fd05ae32f27b3637f705c413c4ce71290aa9b4c4764df694e906d9/cffi-$(CFFI_VERSION).tar.gz
+FUSEPY_URL := https://github.com/terencehonles/fusepy/archive/v$(FUSEPY_VERSION).tar.gz
+PYCPARSER_URL := https://github.com/eliben/pycparser/archive/release_v$(PYCPARSER_VERSION).tar.gz
+PYGIT2_URL := https://github.com/libgit2/pygit2/archive/v$(PYGIT2_VERSION).tar.gz
+RAVEN_URL := https://github.com/getsentry/raven-python/archive/$(RAVEN_VERSION).tar.gz
+SIX_URL := https://pypi.python.org/packages/b3/b2/238e2590826bfdd113244a40d9d3eb26918bd798fc187e2360a8367068db/six-$(SIX_VERSION).tar.gz
