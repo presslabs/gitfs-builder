@@ -65,7 +65,6 @@ build-%:
 	@echo Building $($*_VERSION) source
 	cd $(BUILD_DIR)/$* \
 		&& dch -b -D $(BUILD_DIST) -v $($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION) "Automated build of $* $($*_VERSION) (gitfs-builder $(COMMIT))" \
-        && mk-build-deps --install --remove --tool "apt-get --no-install-recommends --yes" \
 		&& debuild -S -sa --lintian-opts --allow-root
 
 clean:
