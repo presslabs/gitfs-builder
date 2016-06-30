@@ -5,9 +5,9 @@ build:
       DEBEMAIL: "bot@presslabs.com"
       DEBFULLNAME: "Igor Debot"
     commands:
-      #- |
-      #  echo "$$PGP_KEY" | gpg --import
-      #- gpg --list-keys --fingerprint --with-colons bot@presslabs.com | sed -E -n -s 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
+      - |
+        echo "$$PGP_KEY" | gpg --import
+      - gpg --list-keys --fingerprint --with-colons bot@presslabs.com | sed -E -n -s 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
       - make clean
       - make build
 
