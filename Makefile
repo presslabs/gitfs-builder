@@ -5,7 +5,7 @@ include VERSIONS
 ifdef CI_BUILD_DIR
 	TARGET ?= $(CI_BUILD_DIR)/build
 else
-	TARGET ?= /target
+	TARGET ?= /target/build
 endif
 
 ifdef CI_COMMIT
@@ -61,7 +61,6 @@ get-%:
 	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O- | tar -xzf - --strip 1 -C $(BUILD_DIR)/$*
 
 build-%:
-	ls -la /drone/src
 	@echo Building $($*_VERSION) source
 	cd $(BUILD_DIR)/$* \
 		&& dch -b -D $(BUILD_DIST) -v $($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION) "Automated build of $* $($*_VERSION) (gitfs-builder $(COMMIT))" \
