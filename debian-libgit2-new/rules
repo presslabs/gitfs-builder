@@ -14,6 +14,7 @@ TEST_TMPDIR := $(CURDIR)/tmp-test
 override_dh_auto_configure:
 	dh_auto_configure --builddirectory=build-debian-release -- \
 		-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo \
+		-DUSE_OPENSSL:BOOL=OFF \
 		-DTHREADSAFE:BOOL=ON \
 		-DBUILD_CLAR:BOOL=ON \
 		-DLIB_INSTALL_DIR:STRING=lib/$(DEB_HOST_MULTIARCH)
@@ -21,6 +22,7 @@ override_dh_auto_configure:
 	dh_auto_configure --builddirectory=build-debian-devel -- \
 		-DCMAKE_BUILD_TYPE:STRING=Release \
 		-DTHREADSAFE:BOOL=ON \
+		-DUSE_OPENSSL:BOOL=OFF \
 		-DBUILD_CLAR:BOOL=OFF \
 		-DBUILD_SHARED_LIBS:BOOL=OFF \
 		-DLIB_INSTALL_DIR:STRING=lib/$(DEB_HOST_MULTIARCH)
@@ -39,16 +41,16 @@ override_dh_auto_install:
 
 override_dh_auto_test:
 	mkdir -p build-debian-release/tmp
-	TMPDIR=$(CURDIR)/build-debian-release/tmp dh_auto_test --builddirectory=build-debian-release
+	dh_auto_test --builddirectory=build-debian-release
 	mkdir -p build-debian-devel/tmp
-	TMPDIR=$(CURDIR)/build-debian-devel/tmp dh_auto_test --builddirectory=build-debian-devel
+	dh_auto_test --builddirectory=build-debian-devel
 
 override_dh_strip:
-	dh_strip --dbg-package=libgit2-dbg
+	dh_strip --dbgsym-migration='libgit2-dbg (<< 0.24.0-2~)'
 
 override_dh_installexamples:
 	dh_installexamples --exclude .gitignore
 
 %:
-	dh $@ --parallel --buildsystem cmake --dbg-package=libgit2-dbg --builddirectory=build-debian-release
+	dh $@ --parallel --buildsystem cmake --dbgsym-migration='libgit2-dbg (<< 0.24.0-2~)' --builddirectory=build-debian-release
 	dh $@ --parallel --buildsystem cmake --builddirectory=build-debian-devel
