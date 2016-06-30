@@ -1,0 +1,37 @@
+Build both static and shared libraries.
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bfbabc0..891d2af 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -49,7 +49,6 @@ SET(INSTALL_LIB lib CACHE PATH "Where to install libraries to.")
+ SET(INSTALL_INC include CACHE PATH "Where to install headers to.")
+ 
+ # Build options
+-OPTION (BUILD_SHARED_LIBS "Build Shared Library (OFF for Static)" ON)
+ OPTION (THREADSAFE "Build libgit2 as threadsafe" OFF)
+ OPTION (BUILD_CLAR "Build Tests using the Clar suite" ON)
+ OPTION (TAGS "Generate tags" OFF)
+@@ -110,7 +109,8 @@ ELSE()
+ ENDIF ()
+ 
+ # Compile and link libgit2
+-ADD_LIBRARY(git2 ${SRC} ${SRC_ZLIB} ${SRC_HTTP} ${SRC_REGEX} ${WIN_RC})
++ADD_LIBRARY(git2 SHARED ${SRC} ${SRC_ZLIB} ${SRC_HTTP} ${SRC_REGEX} ${WIN_RC})
++ADD_LIBRARY(git2static STATIC ${SRC} ${SRC_ZLIB} ${SRC_HTTP} ${SRC_REGEX} ${WIN_RC})
+ 
+ IF (WIN32)
+ 	TARGET_LINK_LIBRARIES(git2 ws2_32)
+@@ -120,11 +120,12 @@ ENDIF ()
+ 
+ TARGET_LINK_LIBRARIES(git2 ${CMAKE_THREAD_LIBS_INIT})
+ SET_TARGET_PROPERTIES(git2 PROPERTIES VERSION ${LIBGIT2_VERSION_STRING})
++SET_TARGET_PROPERTIES(git2static PROPERTIES OUTPUT_NAME git2)
+ SET_TARGET_PROPERTIES(git2 PROPERTIES SOVERSION ${LIBGIT2_VERSION_MAJOR})
+ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/libgit2.pc.in ${CMAKE_CURRENT_BINARY_DIR}/libgit2.pc @ONLY)
+ 
+ # Install
+-INSTALL(TARGETS git2
++INSTALL(TARGETS git2 git2static
+ 	RUNTIME DESTINATION ${INSTALL_BIN}
+ 	LIBRARY DESTINATION ${INSTALL_LIB}
+ 	ARCHIVE DESTINATION ${INSTALL_LIB}

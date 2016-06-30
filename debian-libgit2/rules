@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# This rules file has 2 streams, the build-debian-devel stream builds
+# the static library and the bulid-debian-release builds the dynamic
+# library.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+TEST_TMPDIR := $(CURDIR)/tmp-test
+
+override_dh_auto_configure:
+	dh_auto_configure --builddirectory=build-debian-release -- \
+		-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo \
+		-DTHREADSAFE:BOOL=ON \
+		-DBUILD_CLAR:BOOL=ON \
+		-DLIB_INSTALL_DIR:STRING=lib/$(DEB_HOST_MULTIARCH)
+
+	dh_auto_configure --builddirectory=build-debian-devel -- \
+		-DCMAKE_BUILD_TYPE:STRING=Release \
+		-DTHREADSAFE:BOOL=ON \
+		-DBUILD_CLAR:BOOL=OFF \
+		-DBUILD_SHARED_LIBS:BOOL=OFF \
+		-DLIB_INSTALL_DIR:STRING=lib/$(DEB_HOST_MULTIARCH)
+
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V
+
+override_dh_auto_build:
+	dh_auto_build --builddirectory=build-debian-release
+	dh_auto_build --builddirectory=build-debian-devel
+
+override_dh_auto_install:
+	dh_auto_install --builddirectory=build-debian-release
+	dh_auto_install --builddirectory=build-debian-devel
+
+override_dh_auto_test:
+	mkdir -p build-debian-release/tmp
+	TMPDIR=$(CURDIR)/build-debian-release/tmp dh_auto_test --builddirectory=build-debian-release
+	mkdir -p build-debian-devel/tmp
+	TMPDIR=$(CURDIR)/build-debian-devel/tmp dh_auto_test --builddirectory=build-debian-devel
+
+override_dh_strip:
+	dh_strip --dbg-package=libgit2-dbg
+
+override_dh_installexamples:
+	dh_installexamples --exclude .gitignore
+
+%:
+	dh $@ --parallel --buildsystem cmake --dbg-package=libgit2-dbg --builddirectory=build-debian-release
+	dh $@ --parallel --buildsystem cmake --builddirectory=build-debian-devel

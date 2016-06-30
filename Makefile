@@ -30,22 +30,17 @@ BUILD_DIR := $(TARGET)
 
 PACKAGES_DIR := $(BUILD_DIR)/gitfs/debian/packages
 
-PREPARE_DEPS := $(addprefix get-, $(DEPENDENCIES))
+PREPARE_DEPS := $(addprefix prepare-, $(DEPENDENCIES))
 BUILD_DEPS := $(addprefix build-, $(DEPENDENCIES))
 
 all: build
 
 build: $(BUILD_DIR) prepare build-gitfs
 
-prepare: prepare-deps prepare-core prepare-packages
+prepare: $(PREPARE_DEPS) $(BUILD_DEPS) prepare-gitfs $(addprefix retrieve-package-, $(PACKAGES))
 
-prepare-deps: $(PREPARE_DEPS) $(BUILD_DEPS)
-
-prepare-packages: $(addprefix retrieve-package-, $(PACKAGES))
-
-prepare-core: get-gitfs
-	@echo "Preparing ./debian folder"
-	@cp -r debian $(BUILD_DIR)/gitfs-$(GITFS_VERSION)/
+prepare-%: get-%
+	@cp -r debian-$* $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)/debian
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -58,13 +53,14 @@ retrieve-package-%: $(PACKAGES_DIR)
 	mkdir -p $(BUILD_DIR)/$*
 
 get-%:
-	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz
+	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz
 	mkdir -p $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)
-	tar -xzf $*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz --strip 1 -C $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)
+	tar -xzf $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz -C $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)
 
 build-%:
 	@echo Building $($*_VERSION) source
 	cd $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION) \
+		&& ls -lah ../ \
 		&& dch -b -D $(BUILD_DIST) -v $($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION) "Automated build of $* $($*_VERSION) $(COMMIT)" \
 		&& debuild -S -sa --lintian-opts --allow-root
 
