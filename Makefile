@@ -54,13 +54,12 @@ retrieve-package-%: $(PACKAGES_DIR)
 
 get-%:
 	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz
-	mkdir -p $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)
-	tar -xzf $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz -C $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)
+	tar -xzf $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz -C $(BUILD_DIR)/
 
 build-%:
 	@echo Building $($*_VERSION) source
 	cd $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION) \
-		&& ls -lah ../ \
+		&& ls -lah . \
 		&& dch -b -D $(BUILD_DIST) -v $($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION) "Automated build of $* $($*_VERSION) $(COMMIT)" \
 		&& debuild -S -sa --lintian-opts --allow-root
 

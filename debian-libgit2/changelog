@@ -1,62 +1,125 @@
-libgit2 (0.24.0-xenial) xenial; urgency=low
+libgit2 (0.24.1-2) unstable; urgency=medium
 
-  * New upstream version 0.24.0
+  * Team upload.
+  * Upload to unstable.
 
- -- Vlad Temian <vlad@presslabs.com>  Tue, 29 Mar 2016 14:38:51 +0000
+ -- Andreas Henriksson <andreas@fatal.se>  Wed, 13 Apr 2016 11:31:25 +0200
 
-libgit2 (0.23.4-precise) precise; urgency=low
+libgit2 (0.24.1-1) experimental; urgency=medium
 
-  * New upstream version 0.23.4
+  * Team upload.
+  * New upstream release.
+  * Drop git_tests-fix-core-stream-test-when-built-with-openssl-o.patch
+    - merged upstream.
+  * Revert "Disable fakeroot emulation when running tests"
+    - no longer needed thanks to upstream fix.
 
- -- Vlad Temian <vladtemian@gmail.com>  Thu, 11 Feb 2016 06:04:54 -0500
+ -- Andreas Henriksson <andreas@fatal.se>  Tue, 12 Apr 2016 16:34:48 +0200
 
-libgit2 (0.22.1-precise~ppa6) precise; urgency=low
+libgit2 (0.24.0-2) experimental; urgency=medium
 
-  * Add pkg-config in order to find libssh2
+  * Team upload.
+  * Incorporate 0.23.1-1.1 NMU diff
+  * Drop libgit2-dbg and migrate to dbgsym
+  * Add git_tests-fix-core-stream-test-when-built-with-openssl-o.patch
+    - cherry-picked from upstream git master.
+  * Disable fakeroot emulation when running tests
+    - tests only works under regular user or real root.
 
- -- Vlad Temian <vladtemian@gmail>  Mon, 23 Feb 2015 07:21:45 -0500
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 11 Apr 2016 17:03:05 +0200
 
-libgit2 (0.22.1-precise~ppa5) precise; urgency=low
+libgit2 (0.24.0-1) experimental; urgency=medium
 
-  * Don't run any tests on launchpad
+  * Team upload.
+  * New upstream release. (Closes: #798338)
+  * Rename packages for new upstream so version -24
+  * Update debian/libgit2-24.symbols
+  * Bump Standards-Version to 3.9.7
+  * Update Vcs-* for new collab-maint repo
 
- -- Vlad Temian <vladtemian@gmail.com>  Wed, 11 Feb 2015 06:09:50 -0500
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 04 Apr 2016 15:30:44 +0200
 
-libgit2 (0.22.1-precise~ppa1) precise; urgency=low
+libgit2 (0.23.1-1.1) unstable; urgency=high
 
-  * New upstream version 0.22.1
+  * Non-maintainer upload.
+  * Don't depend on OpenSSL, either directly or indirectly. Build with and
+    depend on libcurl4-gnutls-dev instead. (Closes: #798421)
+  * Drop associated Build-Depends on ca-certificates.
 
- -- Vlad Temian <vladtemian@gmail.com>  Tue, 10 Feb 2015 11:10:20 -0500
+ -- Josh Triplett <josh@joshtriplett.org>  Fri, 18 Mar 2016 17:08:00 -0700
 
-libgit2 (0.21.2-precise~ppa1) precise; urgency=low
+libgit2 (0.23.1-1) unstable; urgency=medium
 
-  * New upstream version 0.21.2
+  * New upstream release 0.23.1.
+  * debian/control: Added build dependency on libcurl4-openssl-dev.
+  * debian/control: Updated VCS URL.
+  * debian/copyright: Added winhttp copyright.
+  * debian/docs: Added missing development documentation.
+  * debian/libgit2-23.symbols: Updated with latest symbols.
+  * debian/libgit2-dev.lintian-overrides: Override comment
+    stripping, should work once it's supported by dh_strip.
+  * debian/patches/disable_tests.patch: Updated for 0.23.0.
 
- -- Calin Don <calin@presslabs.com>  Fri, 07 Nov 2014 12:26:46 +0000
+ -- Russell Sim <russell.sim@gmail.com>  Tue, 11 Aug 2015 08:51:39 +1000
 
-libgit2 (0.21.1-2) precise; urgency=low
+libgit2 (0.22.2-2) unstable; urgency=medium
 
-  * Fix debhelper dependency problem 
+  * debian/control: Added dependency on pkg-config (Closes: #786494)
+  * debian/rules: Manually cleanup clar files (Closes: #786491)
 
- -- Calin Don <calin@presslabs.com>  Fri, 03 Oct 2014 14:37:10 +0000
+ -- Russell Sim <russell.sim@gmail.com>  Sat, 23 May 2015 22:42:04 -0700
 
-libgit2 (0.21.1-1) precise; urgency=low
+libgit2 (0.22.2-1) unstable; urgency=medium
 
-  * New upstream release 0.21.1
+  * New upstream releaase 0.22.2 (Closes: #780495).
 
- -- Calin Don <calin@presslabs.com>  Fri, 03 Oct 2014 14:34:22 +0000
+ -- Russell Sim <russell.sim@gmail.com>  Wed, 06 May 2015 21:54:25 +1000
 
-libgit2 (0.21.0-2) precise; urgency=low
+libgit2 (0.21.3-1.1) unstable; urgency=medium
 
-  * Added ssh transport support
+  * Non-maintainer upload.
+  * Use CURDIR instead of PWD to fix the previous upload (Closes: #761539).
 
- -- Vlad Temian <vladtemian@gmail.com>  Tue, 01 Jul 2014 20:46:54 +0300
+ -- Ivo De Decker <ivodd@debian.org>  Thu, 08 Jan 2015 23:04:40 +0100
 
-libgit2 (0.21.0-1) precise; urgency=low
+libgit2 (0.21.3-1) unstable; urgency=medium
+
+  * New upstream release 0.21.3 (CVE-2014-9390) (Closes: #774048).
+  * debian/rules: Run tests in a local tmpdir to fix FTBFS (Closes: #761539).
+
+ -- Russell Sim <russell.sim@gmail.com>  Sun, 28 Dec 2014 18:52:18 +1100
+
+libgit2 (0.21.2-2) unstable; urgency=medium
+
+  * debian/control: Added missing dependencies. (Closes: #768482)
+
+ -- Russell Sim <russell.sim@gmail.com>  Sun, 16 Nov 2014 10:33:23 +0100
+
+libgit2 (0.21.2-1) unstable; urgency=medium
+
+  * New upstream release 0.21.2.
+  * debian/control: Added libssh2-1-dev requirement. (Closes: #761042)
+  * debian/control: Added libhttp-parser-dev requirement.
+  * debian/copyright: Fixed MIT NGINX license format.
+  * debian/copyright: Reordered file sections.
+  * debian/copyright: Fixed incorrect clar licensing.
+  * Bumped standards version to 3.9.6 (no change necessary).
+
+ -- Russell Sim <russell.sim@gmail.com>  Tue, 28 Oct 2014 20:34:58 +1100
+
+libgit2 (0.21.1-1) unstable; urgency=medium
+
+  * New upstream release 0.21.1.
+
+ -- Russell Sim <russell.sim@gmail.com>  Wed, 03 Sep 2014 12:41:44 +1000
+
+libgit2 (0.21.0-1) UNRELEASED; urgency=medium
 
   * New upstream release 0.21.0.
+  * debian/copyright: Added new licenses: ICS, CC0.
+  * Library name now matches so name version.
 
- -- Vlad Temian <vladtemian@gmail.com>  Tue, 01 Jul 2014 20:23:18 +0300
+ -- Russell Sim <russell.sim@gmail.com>  Sat, 21 Jun 2014 11:19:23 +1000
 
 libgit2 (0.20.0-1) experimental; urgency=medium
 

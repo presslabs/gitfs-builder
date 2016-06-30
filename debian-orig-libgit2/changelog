@@ -1,0 +1,123 @@
+libgit2 (0.24.0-xenial) xenial; urgency=low
+
+  * New upstream version 0.24.0
+
+ -- Vlad Temian <vlad@presslabs.com>  Tue, 29 Mar 2016 14:38:51 +0000
+
+libgit2 (0.23.4-precise) precise; urgency=low
+
+  * New upstream version 0.23.4
+
+ -- Vlad Temian <vladtemian@gmail.com>  Thu, 11 Feb 2016 06:04:54 -0500
+
+libgit2 (0.22.1-precise~ppa6) precise; urgency=low
+
+  * Add pkg-config in order to find libssh2
+
+ -- Vlad Temian <vladtemian@gmail>  Mon, 23 Feb 2015 07:21:45 -0500
+
+libgit2 (0.22.1-precise~ppa5) precise; urgency=low
+
+  * Don't run any tests on launchpad
+
+ -- Vlad Temian <vladtemian@gmail.com>  Wed, 11 Feb 2015 06:09:50 -0500
+
+libgit2 (0.22.1-precise~ppa1) precise; urgency=low
+
+  * New upstream version 0.22.1
+
+ -- Vlad Temian <vladtemian@gmail.com>  Tue, 10 Feb 2015 11:10:20 -0500
+
+libgit2 (0.21.2-precise~ppa1) precise; urgency=low
+
+  * New upstream version 0.21.2
+
+ -- Calin Don <calin@presslabs.com>  Fri, 07 Nov 2014 12:26:46 +0000
+
+libgit2 (0.21.1-2) precise; urgency=low
+
+  * Fix debhelper dependency problem 
+
+ -- Calin Don <calin@presslabs.com>  Fri, 03 Oct 2014 14:37:10 +0000
+
+libgit2 (0.21.1-1) precise; urgency=low
+
+  * New upstream release 0.21.1
+
+ -- Calin Don <calin@presslabs.com>  Fri, 03 Oct 2014 14:34:22 +0000
+
+libgit2 (0.21.0-2) precise; urgency=low
+
+  * Added ssh transport support
+
+ -- Vlad Temian <vladtemian@gmail.com>  Tue, 01 Jul 2014 20:46:54 +0300
+
+libgit2 (0.21.0-1) precise; urgency=low
+
+  * New upstream release 0.21.0.
+
+ -- Vlad Temian <vladtemian@gmail.com>  Tue, 01 Jul 2014 20:23:18 +0300
+
+libgit2 (0.20.0-1) experimental; urgency=medium
+
+  * New upstream release 0.20.0.
+  * debian/patches/disable_online_tests.patch: Renamed to
+    disable_tests.patch.
+  * debian/patches/disable_tests.patch: Disabled blame test.
+  * debian/rules: Use automatic dh_makeshlib version dependency.
+  * Bumped standards version to 3.9.5 (no change necessary).
+  * debian/copyright: Added new licenses: MIT, BSD and PHP
+
+ -- Russell Sim <russell.sim@gmail.com>  Thu, 13 Mar 2014 20:35:39 +1100
+
+libgit2 (0.19.0-2) experimental; urgency=low
+
+  * Added correct dependencies to development package. (Closes: #715173)
+  * Standards upgrade to version 3.9.4.
+  * Multi-arch support.
+  * Manually specified symbols instead of relying on regex.
+
+ -- Russell Sim <russell.sim@gmail.com>  Wed, 20 Aug 2013 22:33:20 +1000
+
+libgit2 (0.19.0-1) experimental; urgency=low
+
+  * Enable threading. (Closes: #700181)
+
+ -- Russell Sim <russell.sim@gmail.com>  Tue, 02 Jul 2013 19:43:00 +1000
+
+libgit2 (0.18.0-2) experimental; urgency=low
+
+  * Disable online tests.
+    Thanks to Felix Geyer for the heads up. (Closes: #712300)
+
+ -- Russell Sim <russell.sim@gmail.com>  Mon, 17 Jun 2013 23:11:15 +1000
+
+libgit2 (0.18.0-1) experimental; urgency=low
+
+  [ Russell Sim ]
+  * Added examples to dev package.
+
+  [ Carlos Martín Nieto ]
+  * Build-Depend on python-minimal instead of -all
+  * BUILD_TESTS isn't used in this project
+
+  [ Russell Sim ]
+  * New upstream release 0.18.0.
+
+ -- Russell Sim <russell.sim@gmail.com>  Tue, 30 Apr 2013 00:55:09 +1000
+
+libgit2 (0.17.0-1) experimental; urgency=low
+
+  * New Upstream Release.
+  * debian/patches/build_static.patch: Enables building as both
+    static and dynamic library.
+  * debian/rules: Added CMAKE_BUILD_TYPE=RelWithDebInfo to rules file.
+  * debian/compat: Updated to 9, adds support for hardening.
+
+ -- Russell Sim <russell.sim@gmail.com>  Sun, 20 May 2012 21:34:12 +1000
+
+libgit2 (0.16.0-1) experimental; urgency=low
+
+  * Initial release (Closes: #614517)
+
+ -- Russell Sim <russell.sim@gmail.com>  Tue, 06 Mar 2012 23:03:20 +1100
