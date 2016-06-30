@@ -45,7 +45,7 @@ prepare-packages: $(addprefix retrieve-package-, $(PACKAGES))
 
 prepare-core: get-gitfs
 	@echo "Preparing ./debian folder"
-	@cp -r debian $(BUILD_DIR)/gitfs/
+	@cp -r debian $(BUILD_DIR)/gitfs-$(GITFS_VERSION)/
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -55,15 +55,17 @@ $(PACKAGES_DIR):
 
 retrieve-package-%: $(PACKAGES_DIR)
 	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $(PACKAGES_DIR)/$(shell echo $*)-$($(shell echo $* | tr a-z- A-_)_VERSION).tar.gz
+	mkdir -p $(BUILD_DIR)/$*
 
 get-%:
-	mkdir -p $(BUILD_DIR)/$*
-	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O- | tar -xzf - --strip 1 -C $(BUILD_DIR)/$*
+	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz
+	mkdir -p $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)
+	tar -xzf $*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz --strip 1 -C $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)
 
 build-%:
 	@echo Building $($*_VERSION) source
-	cd $(BUILD_DIR)/$* \
-		&& dch -b -D $(BUILD_DIST) -v $($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION) "Automated build of $* $($*_VERSION) (gitfs-builder $(COMMIT))" \
+	cd $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION) \
+		&& dch -b -D $(BUILD_DIST) -v $($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION) "Automated build of $* $($*_VERSION) $(COMMIT)" \
 		&& debuild -S -sa --lintian-opts --allow-root
 
 clean:
