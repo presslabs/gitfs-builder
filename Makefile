@@ -28,10 +28,17 @@ endif
 BUILD_VERSION := $(BUILD_DIST)$(BUILD_VERSION)
 BUILD_DIR := $(TARGET)
 
-PACKAGES_DIR := $(BUILD_DIR)/gitfs/debian/packages
+GITFS_DIR := $(BUILD_DIR)/gitfs-$(GITFS_VERSION)
+PACKAGES_DIR := $(GITFS_DIR)/debian/packages
 
 PREPARE_DEPS := $(addprefix prepare-, $(DEPENDENCIES))
 BUILD_DEPS := $(addprefix build-, $(DEPENDENCIES))
+
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+$(PACKAGES_DIR):
+	mkdir -p $(PACKAGES_DIR)
 
 all: build
 
@@ -42,15 +49,9 @@ prepare: $(PREPARE_DEPS) $(BUILD_DEPS) prepare-gitfs $(addprefix retrieve-packag
 prepare-%: get-%
 	@cp -r debian-$* $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION)/debian
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-
-$(PACKAGES_DIR):
-	mkdir -p $(PACKAGES_DIR)
-
 retrieve-package-%: $(PACKAGES_DIR)
 	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $(PACKAGES_DIR)/$(shell echo $*)-$($(shell echo $* | tr a-z- A-_)_VERSION).tar.gz
-	mkdir -p $(BUILD_DIR)/$*
+	echo debian/packages/$(shell echo $*)-$($(shell echo $* | tr a-z- A-_)_VERSION).tar.gz >> $(GITFS_DIR)/debian/source/include-binaries
 
 get-%:
 	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz
