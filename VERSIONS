@@ -5,7 +5,7 @@ GITFS_VERSION := 0.4.4
 DEPENDENCIES := libgit2
 LIBGIT2_VERSION := 0.24.1
 
-PACKAGES := atomiclong cffi fusepy pycparser pygit2 raven six
+PACKAGES := atomiclong cffi fusepy pycparser pygit2 raven six contextlib2
 ATOMICLONG_VERSION := 0.1.1
 CFFI_VERSION := 1.7.0
 FUSEPY_VERSION := 2.0.2
@@ -13,6 +13,7 @@ PYCPARSER_VERSION := 2.10
 PYGIT2_VERSION := 0.24.1
 RAVEN_VERSION := 5.27.0
 SIX_VERSION := 1.10.0
+CONTEXTLIB2_VERSION := 0.5.4
 
 GITFS_URL := https://github.com/Presslabs/gitfs/archive/$(GITFS_VERSION).tar.gz
 LIBGIT2_URL := https://github.com/libgit2/libgit2/archive/v$(LIBGIT2_VERSION).tar.gz
@@ -23,3 +24,4 @@ PYCPARSER_URL := https://github.com/eliben/pycparser/archive/release_v$(PYCPARSE
 PYGIT2_URL := https://github.com/libgit2/pygit2/archive/v$(PYGIT2_VERSION).tar.gz
 RAVEN_URL := https://github.com/getsentry/raven-python/archive/$(RAVEN_VERSION).tar.gz
 SIX_URL := https://pypi.python.org/packages/b3/b2/238e2590826bfdd113244a40d9d3eb26918bd798fc187e2360a8367068db/six-$(SIX_VERSION).tar.gz
+CONTEXTLIB2_URL := https://pypi.python.org/packages/cc/19/0bee3b2ea499f7fb2480b6b3f4ae7951e111d6b73785ba53c6afeba55672/contextlib2-$(CONTEXTLIB2_VERSION).tar.gz#md5=2d66215f9902c8b857688d4e3b527b3f
