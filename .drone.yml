@@ -1,33 +1,40 @@
-build:
+pipeline:
   build-source:
-    image: presslabs/debuilder:$$SERIES
+    image: presslabs/debuilder:${SERIES}
     environment:
       DEBEMAIL: "bot@presslabs.com"
       DEBFULLNAME: "Igor Debot"
     commands:
       - |
-        echo "$$PGP_KEY" | gpg --import
+        echo "$PGP_KEY" | gpg --import
       - gpg --list-keys --fingerprint --with-colons bot@presslabs.com | sed -E -n -s 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
+      - gpg --list-keys
       - make clean
       - make build
+    secrets:
+      - PGP_KEY
 
   deploy-master:
-    image: presslabs/debuilder:$$SERIES
+    image: presslabs/debuilder:${SERIES}
     commands:
       - |
-        echo "$$PGP_KEY" | gpg --import
+        echo "${PGP_KEY}" | gpg --import
       - gpg --list-keys --fingerprint --with-colons bot@presslabs.com | sed -E -n -s 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
       - cd build && dput ppa:presslabs/gitfs-dev *.changes
+    secrets:
+      - PGP_KEY
     when:
       branch: master
 
   deploy-tag:
-    image: presslabs/debuilder:$$SERIES
+    image: presslabs/debuilder:${SERIES}
     commands:
       - |
-        echo "$$PGP_KEY" | gpg --import
+        echo "${PGP_KEY}" | gpg --import
       - gpg --list-keys --fingerprint --with-colons bot@presslabs.com | sed -E -n -s 's/^fpr:::::::::([0-9A-F]+):$/\1:6:/p' | gpg --import-ownertrust
       - cd build && dput ppa:presslabs/gitfs *.changes
+    secrets:
+      - PGP_KEY
     when:
       event: tag
 
@@ -35,3 +42,6 @@ matrix:
   SERIES:
     - precise
     - trusty
+    - xenial
+    - zesty
+    - artful
