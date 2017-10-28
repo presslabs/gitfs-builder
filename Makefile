@@ -2,8 +2,8 @@ include VERSIONS
 
 # We check for $CI_BUILD_DIR env variable to set the target accordingly if we
 # are within a CI environment
-ifdef CI_BUILD_DIR
-	TARGET ?= $(CI_BUILD_DIR)/build
+ifdef DRONE
+	TARGET ?= /drone/gitfs/build
 else
 	TARGET ?= /target/build
 endif
