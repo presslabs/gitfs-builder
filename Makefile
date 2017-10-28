@@ -8,18 +8,18 @@ else
 	TARGET ?= /target/build
 endif
 
-ifdef CI_COMMIT
-	COMMIT ?= $(CI_COMMIT)
+ifdef DRONE_COMMIT_REF
+	COMMIT ?= $(DRONE_COMMIT_REF)
 else
 	COMMIT ?= '(none)'
 endif
 
 BUILD_DIST := $(shell lsb_release -sc)
-ifdef CI_TAG
-	BUILD_VERSION ?= ~ppa$(CI_TAG:v%=%)
+ifdef DRONE_TAG
+	BUILD_VERSION ?= ~ppa$(DRONE_TAG:v%=%)
 else
-ifdef CI_BRANCH
-	BUILD_VERSION ?= ~ppa$(CI_BUILD_NUMBER)+$(CI_BRANCH)
+ifdef DRONE_BRANCH
+	BUILD_VERSION ?= ~ppa$(DRONE_BUILD_NUMBER)+$(DRONE_BRANCH)
 else
 	BUILD_VERSION ?= $(shell date +'~ppa%Y%m%d+%H%M%S')
 endif
