@@ -5,6 +5,7 @@ workspace:
 pipeline:
   build-source:
     image: presslabs/debuilder:${SERIES}
+    pull: true
     environment:
       DEBEMAIL: "bot@presslabs.com"
       DEBFULLNAME: "Igor Debot"
@@ -20,6 +21,7 @@ pipeline:
 
   deploy-master:
     image: presslabs/debuilder:${SERIES}
+    pull: true
     commands:
       - |
         echo "$PGP_KEY" | gpg --import
@@ -32,6 +34,7 @@ pipeline:
 
   deploy-tag:
     image: presslabs/debuilder:${SERIES}
+    pull: true
     commands:
       - |
         echo "$PGP_KEY" | gpg --import
