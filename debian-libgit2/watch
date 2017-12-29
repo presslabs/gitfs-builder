@@ -1,3 +1,0 @@
-version=3
-opts=compression=xz,repack,filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/libgit2-$1\.tar\.gz/,dversionmangle=s/\+dfsg\d*$//,repacksuffix=+dfsg1 \
-  https://github.com/libgit2/libgit2/releases .*/v?([\d.]*)\.tar\.gz
