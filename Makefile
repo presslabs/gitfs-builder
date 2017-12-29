@@ -61,7 +61,7 @@ build-%:
 	@echo Building $($*_VERSION) source
 	cd $(BUILD_DIR)/$*-$($(shell echo $* | tr a-z- A-Z_)_VERSION) \
 		&& dch -b -D $(BUILD_DIST) -v $($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION) "Automated build of $* $($*_VERSION) $(COMMIT)" \
-		&& debuild -S -sa --lintian-opts --allow-root
+		&& debuild -S -sa --lintian-opts --allow-root --no-check-builddeps
 
 clean:
 	rm -rf $(BUILD_DIR)
