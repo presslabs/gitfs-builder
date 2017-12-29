@@ -18,8 +18,8 @@ BUILD_DIST := $(shell lsb_release -sc)
 ifdef DRONE_TAG
 	BUILD_VERSION ?= ~ppa$(DRONE_TAG:v%=%)
 else
-ifdef DRONE_BRANCH
-	BUILD_VERSION ?= ~ppa$(DRONE_BUILD_NUMBER)+$(DRONE_BRANCH)
+ifdef DRONE_NUMBER
+	BUILD_VERSION ?= ~ppa$(DRONE_BUILD_NUMBER)+$(shell date +'%Y%m%d+%H%M%S')
 else
 	BUILD_VERSION ?= $(shell date +'~ppa%Y%m%d+%H%M%S')
 endif
