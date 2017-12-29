@@ -3,7 +3,7 @@
 GITFS_VERSION := 0.4.5.1
 
 DEPENDENCIES := libgit2
-LIBGIT2_VERSION := 0.24.1
+LIBGIT2_VERSION := 0.26.0
 
 PACKAGES := atomiclong cffi fusepy pycparser pygit2 raven six contextlib2
 ATOMICLONG_VERSION := 0.1.1
