@@ -1,0 +1,29 @@
+Description: Add -DUSE_CURL_SSL to allow distros to avoid OpenSSL
+Author: Ximin Luo <infinity0@pwned.gg>
+Forwarded: https://github.com/libgit2/libgit2/pull/4325
+--- a/src/transports/http.c
++++ b/src/transports/http.c
+@@ -606,7 +606,11 @@
+ 	}
+ 
+ 	if (t->connection_data.use_ssl) {
++#ifdef GIT_CURL_SSL
++		error = git_curl_stream_new(&t->io, t->connection_data.host, t->connection_data.port, true);
++#else
+ 		error = git_tls_stream_new(&t->io, t->connection_data.host, t->connection_data.port);
++#endif
+ 	} else {
+ #ifdef GIT_CURL
+ 		error = git_curl_stream_new(&t->io, t->connection_data.host, t->connection_data.port, false);
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -285,6 +285,9 @@
+ 	ENDIF ()
+ 
+ 	IF (CURL_FOUND)
++		IF (USE_CURL_SSL)
++			ADD_DEFINITIONS(-DGIT_CURL_SSL)
++		ENDIF()
+ 		ADD_DEFINITIONS(-DGIT_CURL)
+ 		INCLUDE_DIRECTORIES(${CURL_INCLUDE_DIRS})
+ 		LINK_DIRECTORIES(${CURL_LIBRARY_DIRS})

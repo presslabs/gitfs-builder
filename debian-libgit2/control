@@ -2,21 +2,22 @@ Source: libgit2
 Section: libs
 Priority: extra
 Maintainer: Russell Sim <russell.sim@gmail.com>
-Build-Depends: debhelper (>= 9.20120115), python-minimal (>= 2.4.0), pkg-config,
-               cmake, libz-dev, libcurl4-openssl-dev, libssl-dev,
-               libssh2-1-dev, libhttp-parser-dev, ca-certificates
-Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 9.20160114),
+               python-minimal (>= 2.4.0), pkg-config,
+               cmake, libz-dev, libcurl4-gnutls-dev,
+               libssh2-1-dev, libhttp-parser-dev, libkrb5-dev
+Standards-Version: 3.9.8
 Homepage: http://libgit2.github.com/
-Vcs-Git: git://anonscm.debian.org/users/arrsim-guest/libgit2.git
-Vcs-Browser: http://anonscm.debian.org/cgit/users/arrsim-guest/libgit2.git/
+Vcs-Git: https://anonscm.debian.org/cgit/collab-maint/libgit2.git/
+Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/libgit2.git/
 
 
 Package: libgit2-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Depends: libgit2 (= ${binary:Version}), libz-dev,
-         libcurl4-openssl-dev, libssl-dev, libssh2-1-dev,
+Depends: libgit2-26 (= ${binary:Version}), libz-dev,
+         libcurl4-gnutls-dev, libssh2-1-dev,
          libhttp-parser-dev, ${shlibs:Depends}, ${misc:Depends}
 Description: low-level Git library (development files)
  libgit2 is a portable, pure C implementation of the Git
@@ -25,7 +26,7 @@ Description: low-level Git library (development files)
  .
  This package contains the development files for libgit2.
 
-Package: libgit2
+Package: libgit2-26
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
@@ -34,18 +35,3 @@ Description: low-level Git library
  libgit2 is a portable, pure C implementation of the Git
  distributed version control system core methods provided as a
  re-entrant link-able library with a solid API.
-
-Package: libgit2-dbg
-Section: debug
-Architecture: any
-Multi-Arch: same
-Depends: libgit2 (= ${binary:Version}),
-         ${misc:Depends}
-Description: libgit2 library and debugging symbols
- libgit2 is a portable, pure C implementation of the Git
- distributed version control system core methods provided as a
- re-entrant link-able library with a solid API.
- .
- This package contains detached debugging symbols.
- .
- Most people will not need this package.
