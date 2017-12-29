@@ -44,8 +44,6 @@ pipeline:
 
 matrix:
   SERIES:
-    - precise
-    - trusty
     - xenial
     - zesty
     - artful
