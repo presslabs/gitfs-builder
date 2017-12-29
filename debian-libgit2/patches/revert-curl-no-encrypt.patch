@@ -1,0 +1,85 @@
+commit e96800420abf894673e8eeca4af5277dbb12d730
+Author: Ximin Luo <infinity0@pwned.gg>
+Date:   Tue Aug 1 16:07:35 2017 +0200
+
+    Revert "curl: remove the encrypted param to the constructor"
+    
+    This reverts commit 8443f492dd53451c1c74f61c0e51ddb32c5e6ba0.
+
+diff --git a/src/curl_stream.c b/src/curl_stream.c
+index 4e0455cca..346b0c00d 100644
+--- a/src/curl_stream.c
++++ b/src/curl_stream.c
+@@ -296,7 +296,7 @@ static void curls_free(git_stream *stream)
+ 	git__free(s);
+ }
+ 
+-int git_curl_stream_new(git_stream **out, const char *host, const char *port)
++int git_curl_stream_new(git_stream **out, const char *host, const char *port, int encrypted)
+ {
+ 	curl_stream *st;
+ 	CURL *handle;
+@@ -317,7 +317,15 @@ int git_curl_stream_new(git_stream **out, const char *host, const char *port)
+ 		return error;
+ 	}
+ 
+-	curl_easy_setopt(handle, CURLOPT_URL, host);
++	if (encrypted) {
++		git_buf buf = GIT_BUF_INIT;
++		git_buf_printf(&buf, "https://%s", host);
++		curl_easy_setopt(handle, CURLOPT_URL, buf.ptr);
++		git_buf_free(&buf);
++	} else {
++		curl_easy_setopt(handle, CURLOPT_URL, host);
++	}
++
+ 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, st->curl_error);
+ 	curl_easy_setopt(handle, CURLOPT_PORT, iport);
+ 	curl_easy_setopt(handle, CURLOPT_CONNECT_ONLY, 1);
+@@ -329,7 +337,7 @@ int git_curl_stream_new(git_stream **out, const char *host, const char *port)
+ 	/* curl_easy_setopt(handle, CURLOPT_VERBOSE, 1); */
+ 
+ 	st->parent.version = GIT_STREAM_VERSION;
+-	st->parent.encrypted = 0; /* we don't encrypt ourselves */
++	st->parent.encrypted = encrypted;
+ 	st->parent.proxy_support = 1;
+ 	st->parent.connect = curls_connect;
+ 	st->parent.certificate = curls_certificate;
+diff --git a/src/curl_stream.h b/src/curl_stream.h
+index 283f0fe40..168fbe8c4 100644
+--- a/src/curl_stream.h
++++ b/src/curl_stream.h
+@@ -9,6 +9,6 @@
+ 
+ #include "git2/sys/stream.h"
+ 
+-extern int git_curl_stream_new(git_stream **out, const char *host, const char *port);
++extern int git_curl_stream_new(git_stream **out, const char *host, const char *port, bool encrypted);
+ 
+ #endif
+diff --git a/src/openssl_stream.c b/src/openssl_stream.c
+index 759c5015f..f567347a1 100644
+--- a/src/openssl_stream.c
++++ b/src/openssl_stream.c
+@@ -588,7 +588,7 @@ int git_openssl_stream_new(git_stream **out, const char *host, const char *port)
+ 
+ 	st->io = NULL;
+ #ifdef GIT_CURL
+-	error = git_curl_stream_new(&st->io, host, port);
++	error = git_curl_stream_new(&st->io, host, port, false);
+ #else
+ 	error = git_socket_stream_new(&st->io, host, port);
+ #endif
+diff --git a/src/transports/http.c b/src/transports/http.c
+index cb4a6d0d5..e4535b6db 100644
+--- a/src/transports/http.c
++++ b/src/transports/http.c
+@@ -609,7 +609,7 @@ static int http_connect(http_subtransport *t)
+ 		error = git_tls_stream_new(&t->io, t->connection_data.host, t->connection_data.port);
+ 	} else {
+ #ifdef GIT_CURL
+-		error = git_curl_stream_new(&t->io, t->connection_data.host, t->connection_data.port);
++		error = git_curl_stream_new(&t->io, t->connection_data.host, t->connection_data.port, false);
+ #else
+ 		error = git_socket_stream_new(&t->io,  t->connection_data.host, t->connection_data.port);
+ #endif

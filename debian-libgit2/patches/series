@@ -1,0 +1,2 @@
+revert-curl-no-encrypt.patch
+use-curl-stream.patch

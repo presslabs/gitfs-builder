@@ -1,0 +1,4 @@
+The DFSG version string is added because the /deps directory is removed from the
+upstream tarball since it's not used in any part of the packaging.
+
+ -- Russell Sim <russell.sim@gmail.com>, Sat, 29 Jul 2017 18:32:25 +0200
