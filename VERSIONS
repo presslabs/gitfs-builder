@@ -2,6 +2,9 @@
 
 GITFS_VERSION := 0.4.5.1
 
+DEPENDENCIES := libgit2
+LIBGIT2_VERSION := 0.26.0
+
 PACKAGES := atomiclong cffi fusepy pycparser pygit2 raven six contextlib2
 ATOMICLONG_VERSION := 0.1.1
 CFFI_VERSION := 1.7.0
@@ -13,6 +16,7 @@ SIX_VERSION := 1.10.0
 CONTEXTLIB2_VERSION := 0.5.4
 
 GITFS_URL := https://github.com/Presslabs/gitfs/archive/$(GITFS_VERSION).tar.gz
+LIBGIT2_URL := https://github.com/libgit2/libgit2/archive/v$(LIBGIT2_VERSION).tar.gz
 ATOMICLONG_URL := https://pypi.python.org/packages/source/a/atomiclong/atomiclong-$(ATOMICLONG_VERSION).tar.gz
 CFFI_URL := https://pypi.python.org/packages/83/3c/00b553fd05ae32f27b3637f705c413c4ce71290aa9b4c4764df694e906d9/cffi-$(CFFI_VERSION).tar.gz
 FUSEPY_URL := https://github.com/terencehonles/fusepy/archive/v$(FUSEPY_VERSION).tar.gz
