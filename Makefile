@@ -8,8 +8,8 @@ else
 	TARGET ?= /target/build
 endif
 
-ifdef DRONE_COMMIT_REF
-	COMMIT ?= $(DRONE_COMMIT_REF)
+ifdef DRONE_COMMIT_SHA
+	COMMIT ?= $(DRONE_COMMIT_SHA)
 else
 	COMMIT ?= '(none)'
 endif
