@@ -29,8 +29,8 @@ pipeline:
       - cd build && dput ppa:presslabs/gitfs-dev *.changes
     secrets:
       - PGP_KEY
-    when:
-      branch: master
+    # when:
+    #   branch: master
 
   deploy-tag:
     image: presslabs/debuilder:${SERIES}
