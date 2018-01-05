@@ -50,3 +50,5 @@ matrix:
     - xenial
     - zesty
     - artful
+    - trusty
+    - precise
