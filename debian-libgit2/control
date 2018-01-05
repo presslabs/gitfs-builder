@@ -3,7 +3,7 @@ Section: libs
 Priority: extra
 Maintainer: Russell Sim <russell.sim@gmail.com>
 Build-Depends: debhelper (>= 9.20120115),
-               python-minimal (>= 2.4.0), pkg-config,
+               python-minimal (>= 2.4.0), pkg-config, pkg-create-dbgsym,
                cmake, libz-dev, libcurl4-gnutls-dev,
                libssh2-1-dev, libhttp-parser-dev, libkrb5-dev
 Standards-Version: 3.9.8
