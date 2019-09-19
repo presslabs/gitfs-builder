@@ -1,0 +1,86 @@
+From 2ce5a21f46e78cdc3f04cb783e372828494199d5 Mon Sep 17 00:00:00 2001
+From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Date: Fri, 25 May 2018 01:41:33 +0200
+Subject: [PATCH] index: Fix alignment issues in write_disk_entry()
+
+In order to avoid alignment issues on certain target architectures,
+it is necessary to use memcpy() when modifying elements of a struct
+inside a buffer returned by git_filebuf_reserve().
+---
+ src/index.c | 42 +++++++++++++++++++++---------------------
+ 1 file changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/src/index.c b/src/index.c
+index a867547fbb..3dcb6dde77 100644
+--- a/src/index.c
++++ b/src/index.c
+@@ -2605,7 +2605,7 @@ static bool is_index_extended(git_index *index)
+ static int write_disk_entry(git_filebuf *file, git_index_entry *entry, const char *last)
+ {
+ 	void *mem = NULL;
+-	struct entry_short *ondisk;
++	struct entry_short ondisk;
+ 	size_t path_len, disk_size;
+ 	int varint_len = 0;
+ 	char *path;
+@@ -2633,9 +2633,7 @@ static int write_disk_entry(git_filebuf *file, git_index_entry *entry, const cha
+ 	if (git_filebuf_reserve(file, &mem, disk_size) < 0)
+ 		return -1;
+ 
+-	ondisk = (struct entry_short *)mem;
+-
+-	memset(ondisk, 0x0, disk_size);
++	memset(mem, 0x0, disk_size);
+ 
+ 	/**
+ 	 * Yes, we have to truncate.
+@@ -2647,30 +2645,32 @@ static int write_disk_entry(git_filebuf *file, git_index_entry *entry, const cha
+ 	 *
+ 	 * In 2038 I will be either too dead or too rich to care about this
+ 	 */
+-	ondisk->ctime.seconds = htonl((uint32_t)entry->ctime.seconds);
+-	ondisk->mtime.seconds = htonl((uint32_t)entry->mtime.seconds);
+-	ondisk->ctime.nanoseconds = htonl(entry->ctime.nanoseconds);
+-	ondisk->mtime.nanoseconds = htonl(entry->mtime.nanoseconds);
+-	ondisk->dev = htonl(entry->dev);
+-	ondisk->ino = htonl(entry->ino);
+-	ondisk->mode = htonl(entry->mode);
+-	ondisk->uid = htonl(entry->uid);
+-	ondisk->gid = htonl(entry->gid);
+-	ondisk->file_size = htonl((uint32_t)entry->file_size);
++	ondisk.ctime.seconds = htonl((uint32_t)entry->ctime.seconds);
++	ondisk.mtime.seconds = htonl((uint32_t)entry->mtime.seconds);
++	ondisk.ctime.nanoseconds = htonl(entry->ctime.nanoseconds);
++	ondisk.mtime.nanoseconds = htonl(entry->mtime.nanoseconds);
++	ondisk.dev = htonl(entry->dev);
++	ondisk.ino = htonl(entry->ino);
++	ondisk.mode = htonl(entry->mode);
++	ondisk.uid = htonl(entry->uid);
++	ondisk.gid = htonl(entry->gid);
++	ondisk.file_size = htonl((uint32_t)entry->file_size);
+ 
+-	git_oid_cpy(&ondisk->oid, &entry->id);
++	git_oid_cpy(&ondisk.oid, &entry->id);
+ 
+-	ondisk->flags = htons(entry->flags);
++	ondisk.flags = htons(entry->flags);
+ 
+ 	if (entry->flags & GIT_IDXENTRY_EXTENDED) {
+-		struct entry_long *ondisk_ext;
+-		ondisk_ext = (struct entry_long *)ondisk;
+-		ondisk_ext->flags_extended = htons(entry->flags_extended &
++		struct entry_long ondisk_ext;
++		memcpy(&ondisk_ext, &ondisk, sizeof(struct entry_short));
++		ondisk_ext.flags_extended = htons(entry->flags_extended &
+ 			GIT_IDXENTRY_EXTENDED_FLAGS);
+-		path = ondisk_ext->path;
++		memcpy(mem, &ondisk_ext, sizeof(struct entry_long));
++		path = ((struct entry_long*)mem)->path;
+ 		disk_size -= offsetof(struct entry_long, path);
+ 	} else {
+-		path = ondisk->path;
++		memcpy(mem, &ondisk, sizeof(struct entry_short));
++		path = ((struct entry_short*)mem)->path;
+ 		disk_size -= offsetof(struct entry_short, path);
+ 	}
+ 

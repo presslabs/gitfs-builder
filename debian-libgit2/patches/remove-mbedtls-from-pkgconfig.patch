@@ -1,0 +1,25 @@
+From 64a78a80fc2e3dd0d94fbc248202bb676075f78a Mon Sep 17 00:00:00 2001
+From: Etienne Samson <samson.etienne@gmail.com>
+Date: Fri, 25 May 2018 09:28:52 +0000
+Subject: [PATCH] mbedtls: don't require mbedtls from our pkgconfig file
+
+mbedTLS has no pkgconfig file, hence we can't require it. For now, pass its link flags as our own.
+---
+ src/CMakeLists.txt | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -236,8 +236,10 @@
+ 		SET(GIT_MBEDTLS 1)
+ 		LIST(APPEND LIBGIT2_INCLUDES ${MBEDTLS_INCLUDE_DIR})
+ 		LIST(APPEND LIBGIT2_LIBS ${MBEDTLS_LIBRARIES})
+-		LIST(APPEND LIBGIT2_PC_LIBS ${MBEDTLS_LDFLAGS})
+-		LIST(APPEND LIBGIT2_PC_REQUIRES "mbedtls")
++		# mbedTLS has no pkgconfig file, hence we can't require it
++		# https://github.com/ARMmbed/mbedtls/issues/228
++		# For now, pass its link flags as our own
++		LIST(APPEND LIBGIT2_PC_LIBS ${MBEDTLS_LIBRARIES})
+ 	ELSEIF (HTTPS_BACKEND STREQUAL "WinHTTP")
+ 		# WinHTTP setup was handled in the WinHTTP-specific block above
+ 	ELSE()

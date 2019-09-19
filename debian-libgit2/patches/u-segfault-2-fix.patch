@@ -1,0 +1,51 @@
+From 9ad96367fbbbbc6aa233bfa2f808a3ec8bf11bb2 Mon Sep 17 00:00:00 2001
+From: Edward Thomson <ethomson@edwardthomson.com>
+Date: Wed, 7 Nov 2018 15:31:21 +0000
+Subject: [PATCH] smart transport: only clear url on hard reset
+
+After creating a transport for a server, we expect to be able to call
+`connect`, then invoke subsequent `action` calls.  We provide the URL to
+these `action` calls, although our built-in transports happen to ignore
+it since they've already parsed it into an internal format that they
+intend to use (`gitno_connection_data`).
+
+In ca2eb4608243162a13c427e74526b6422d5a6659, we began clearing the URL
+field after a connection, meaning that subsequent calls to transport
+`action` callbacks would get a NULL URL, which went undetected since the
+builtin transports ignore the URL when they're already connected
+(instead of re-parsing it into an internal format).
+
+Downstream custom transport implementations (eg, LibGit2Sharp) did
+notice this change, however.
+
+Since `reset_stream` is called even when we're not closing the
+subtransport, update to only clear the URL when we're closing the
+subtransport.  This ensures that `action` calls will get the correct URL
+information even after a connection.
+---
+ src/transports/smart.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/src/transports/smart.c b/src/transports/smart.c
+index a9459c4338..e972d30ba2 100644
+--- a/src/transports/smart.c
++++ b/src/transports/smart.c
+@@ -45,14 +45,13 @@ GIT_INLINE(int) git_smart__reset_stream(transport_smart *t, bool close_subtransp
+ 		t->current_stream = NULL;
+ 	}
+ 
+-	if (t->url) {
++	if (close_subtransport) {
+ 		git__free(t->url);
+ 		t->url = NULL;
+-	}
+ 
+-	if (close_subtransport &&
+-		t->wrapped->close(t->wrapped) < 0)
+-		return -1;
++		if (t->wrapped->close(t->wrapped) < 0)
++			return -1;
++	}
+ 
+ 	return 0;
+ }

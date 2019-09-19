@@ -1,23 +1,23 @@
 Source: libgit2
 Section: libs
-Priority: extra
+Priority: optional
 Maintainer: Russell Sim <russell.sim@gmail.com>
-Build-Depends: debhelper (>= 9.20120115),
-               python-minimal (>= 2.4.0), pkg-config, pkg-create-dbgsym,
-               cmake, libz-dev, libcurl4-gnutls-dev,
+Build-Depends: debhelper (>= 11~),
+               python-minimal (>= 2.4.0), pkg-config,
+               cmake, libz-dev, libmbedtls-dev,
                libssh2-1-dev, libhttp-parser-dev, libkrb5-dev
-Standards-Version: 3.9.8
-Homepage: http://libgit2.github.com/
-Vcs-Git: https://anonscm.debian.org/cgit/collab-maint/libgit2.git/
-Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/libgit2.git/
+Standards-Version: 4.3.0
+Homepage: https://libgit2.github.com/
+Vcs-Git: https://salsa.debian.org/debian/libgit2.git
+Vcs-Browser: https://salsa.debian.org/debian/libgit2
 
 
 Package: libgit2-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Depends: libgit2-26 (= ${binary:Version}), libz-dev,
-         libcurl4-gnutls-dev, libssh2-1-dev,
+Depends: libgit2-28 (= ${binary:Version}), libz-dev,
+         libmbedtls-dev, libssh2-1-dev,
          libhttp-parser-dev, ${shlibs:Depends}, ${misc:Depends}
 Description: low-level Git library (development files)
  libgit2 is a portable, pure C implementation of the Git
@@ -26,7 +26,7 @@ Description: low-level Git library (development files)
  .
  This package contains the development files for libgit2.
 
-Package: libgit2-26
+Package: libgit2-28
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}

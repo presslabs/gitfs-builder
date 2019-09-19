@@ -1,4 +1,5 @@
-libgit2.so.26 libgit2-26 #MINVER#
+# SymbolsHelper-Confirmed: 0.28.0 amd64
+libgit2.so.28 libgit2-28 #MINVER#
  git_annotated_commit_free@Base 0.26.0
  git_annotated_commit_from_fetchhead@Base 0.26.0
  git_annotated_commit_from_ref@Base 0.26.0
@@ -178,6 +179,8 @@ libgit2.so.26 libgit2-26 #MINVER#
  git_diff_merge@Base 0.26.0
  git_diff_num_deltas@Base 0.26.0
  git_diff_num_deltas_of_type@Base 0.26.0
+ git_diff_patchid@Base 0.27.0
+ git_diff_patchid_init_options@Base 0.27.0
  git_diff_print@Base 0.26.0
  git_diff_print_callback__to_buf@Base 0.26.0
  git_diff_print_callback__to_file_handle@Base 0.26.0
@@ -285,6 +288,9 @@ libgit2.so.26 libgit2-26 #MINVER#
  git_libgit2_opts@Base 0.26.0
  git_libgit2_shutdown@Base 0.26.0
  git_libgit2_version@Base 0.26.0
+ git_mempack_dump@Base 0.27.0
+ git_mempack_new@Base 0.27.0
+ git_mempack_reset@Base 0.27.0
  git_merge@Base 0.26.0
  git_merge_analysis@Base 0.26.0
  git_merge_base@Base 0.26.0
@@ -309,7 +315,13 @@ libgit2.so.26 libgit2-26 #MINVER#
  git_merge_init_options@Base 0.26.0
  git_merge_trees@Base 0.26.0
  git_message_prettify@Base 0.26.0
+ git_message_trailer_array_free@Base 0.27.0
+ git_message_trailers@Base 0.27.0
  git_note_author@Base 0.26.0
+ git_note_commit_create@Base 0.27.0
+ git_note_commit_iterator_new@Base 0.27.0
+ git_note_commit_read@Base 0.27.0
+ git_note_commit_remove@Base 0.27.0
  git_note_committer@Base 0.26.0
  git_note_create@Base 0.26.0
  git_note_default_ref@Base 0.26.0
@@ -529,6 +541,7 @@ libgit2.so.26 libgit2-26 #MINVER#
  git_remote_connected@Base 0.26.0
  git_remote_create@Base 0.26.0
  git_remote_create_anonymous@Base 0.26.0
+ git_remote_create_detached@Base 0.27.0
  git_remote_create_with_fetchspec@Base 0.26.0
  git_remote_default_branch@Base 0.26.0
  git_remote_delete@Base 0.26.0
