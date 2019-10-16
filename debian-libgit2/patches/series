@@ -1,6 +1,1 @@
-use-mbedtls.patch
 disable-online-tests.patch
-remove-mbedtls-from-pkgconfig.patch
-index-Fix-alignment-issues-in-write_disk_entry.patch
-u-segfault-fix.patch
-u-segfault-2-fix.patch
