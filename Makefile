@@ -18,7 +18,11 @@ BUILD_DIST := $(shell lsb_release -sc)
 ifdef DRONE_TAG
 	BUILD_VERSION ?= ~ppa$(DRONE_TAG:v%=%)
 else
+ifdef DRONE_BRANCH
+	BUILD_VERSION ?= ~ppa$(DRONE_BUILD_NUMBER)+$(DRONE_BRANCH)
+else
 	BUILD_VERSION ?= $(shell date +'~ppa%Y%m%d+%H%M%S')
+endif
 endif
 
 BUILD_VERSION := $(BUILD_DIST)$(BUILD_VERSION)
@@ -50,8 +54,8 @@ retrieve-package-%: $(PACKAGES_DIR)
 	echo debian/packages/$(shell echo $*)-$($(shell echo $* | tr a-z- A-_)_VERSION).tar.gz >> $(GITFS_DIR)/debian/source/include-binaries
 
 get-%:
-	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION).orig.tar.gz
-	tar -xzf $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION)-$(BUILD_VERSION).orig.tar.gz -C $(BUILD_DIR)/
+	wget -q $($(shell echo $* | tr a-z- A-Z_)_URL) -O $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz
+	tar -xzf $(BUILD_DIR)/$*_$($(shell echo $* | tr a-z- A-Z_)_VERSION).orig.tar.gz -C $(BUILD_DIR)/
 
 build-%:
 	@echo Building $($*_VERSION) source
