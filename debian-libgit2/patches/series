@@ -1,2 +1,1 @@
-revert-curl-no-encrypt.patch
-use-curl-stream.patch
+disable-online-tests.patch

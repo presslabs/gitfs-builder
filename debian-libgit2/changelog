@@ -1,8 +1,123 @@
-libgit2 (0.26.0+dfsg.1-1.1build1) bionic; urgency=medium
+libgit2 (0.28.1+dfsg.1-0.1) experimental; urgency=medium
 
-  * No-change rebuild for http-parser soname change.
+  * Non-maintainer upload
+  * New upstream version 0.28.1+dfsg.1
+  * Library transition from 27 to 28
+  * Remove resolved patches with new upstream version
+  * Remove nonexistent document
 
- -- Matthias Klose <doko@ubuntu.com>  Tue, 14 Nov 2017 14:00:22 +0000
+ -- Jongmin Kim <jmkim@pukyong.ac.kr>  Sun, 12 May 2019 02:53:10 +0900
+
+libgit2 (0.27.7+dfsg.1-0.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * New upstream release (Closes: #917176)
+
+ -- Raju Devidas <rajudev@disroot.org>  Wed, 26 Dec 2018 22:59:30 +0530
+
+libgit2 (0.27.4+dfsg.1-0.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Totally For Reals fix the segfaults. (Closes: #904004)
+
+ -- Ximin Luo <infinity0@debian.org>  Fri, 10 Aug 2018 21:29:21 -0700
+
+libgit2 (0.27.0+dfsg.1-0.9) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix random segfaults in threads::diff. (Closes: #904004)
+  * Don't specifically use gcc-8 now that it's already the Debian default.
+
+ -- Ximin Luo <infinity0@debian.org>  Sun, 05 Aug 2018 06:14:33 -0700
+
+libgit2 (0.27.0+dfsg.1-0.8) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * Force build with gcc-8 to fix segfaults in armhf build (Closes: #904004)
+
+ -- Pirate Praveen <praveen@debian.org>  Wed, 18 Jul 2018 16:03:06 +0530
+
+libgit2 (0.27.0+dfsg.1-0.7) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * Enable basic autopkgtest
+
+ -- Pirate Praveen <praveen@debian.org>  Fri, 13 Jul 2018 08:19:44 +0530
+
+libgit2 (0.27.0+dfsg.1-0.6) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * Reupload to unstable
+
+ -- Pirate Praveen <praveen@debian.org>  Wed, 11 Jul 2018 18:45:42 +0530
+
+libgit2 (0.27.0+dfsg.1-0.5) experimental; urgency=medium
+
+  * Non-maintainer upload
+  * Switch vcs to salsa
+  * Bump standards version to 4.1.4
+  * Bump debhelper compatibility level to 11
+
+ -- Pirate Praveen <praveen@debian.org>  Mon, 04 Jun 2018 18:41:38 +0530
+
+libgit2 (0.27.0+dfsg.1-0.4) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix stack smashing error on 32-bit targets (Closes: #900126)
+
+ -- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>  Sat, 26 May 2018 16:27:33 +0200
+
+libgit2 (0.27.0+dfsg.1-0.3) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * Don't add mbedtls in pkgconfig file (upstream patch)
+  * Fix test failure due to alignment-related crashes (Closes: #900059)
+
+ -- Pirate Praveen <praveen@debian.org>  Sat, 26 May 2018 17:31:32 +0530
+
+libgit2 (0.27.0+dfsg.1-0.2) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * Disable tests requiring internet access
+  * Explicitly specify mbedTLS for https (Closes: #899253)
+
+ -- Pirate Praveen <praveen@debian.org>  Thu, 24 May 2018 21:53:14 +0530
+
+libgit2 (0.27.0+dfsg.1-0.1) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * New upstream version 0.27.0 (Closes: #869665)
+  * Switch to mbedTLS with upstream patch
+    (Thanks to Nicolas Braud-Santoni for his efforts to update curl support
+    patch)
+  * Library transition libgit2-26 to libgit2-27
+
+ -- Pirate Praveen <praveen@debian.org>  Sun, 06 May 2018 17:57:24 +0530
+
+libgit2 (0.26.0+dfsg.1-1.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+
+  * Declare compliance with standards version 4.1.3.
+    * debian/control: Replace `Priority: extra` with `optional`
+    * debian/copyright
+      + Refer to the CC0 license file.
+        Closes: #882632
+      + Use HTTPS URIs
+
+  * debian/watch: Fix generated version numbers
+
+  * Make the package lintian-clean
+    * debian/control
+      + Use canonical Vcs-* URLs
+      + Use an HTTPS URL for the homepage
+    * Switch to debhelper 11
+    * Lintian overrides
+      * Remove empty override files
+      * Relocate source file to debian/source/
+      * Rename tag debian-watch-may-check-gpg-signature
+
+ -- Nicolas Braud-Santoni <nicolas@braud-santoni.eu>  Wed, 14 Feb 2018 16:34:02 +0100
 
 libgit2 (0.26.0+dfsg.1-1.1) unstable; urgency=medium
 

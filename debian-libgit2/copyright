@@ -1,6 +1,6 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: libgit2
-Source: http://libgit2.github.com/
+Source: https://libgit2.github.com/
 Files-Excluded: deps/*
 
 Files: *
@@ -17,7 +17,7 @@ License: GPL-2+
 
 Files: examples/*
 Copyright: Public Domain
-License: CC0
+License: CC0-1.0
 
 Files: include/git2/inttypes.h include/git2/stdint.h
 Copyright: 2006, Alexander Chemeris
@@ -248,14 +248,13 @@ License: BSD-3-clause-jgit
  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-License: CC0
+License: CC0-1.0
  To the extent possible under law, the author(s) have dedicated all copyright
  and related and neighboring rights to this software to the public domain
  worldwide. This software is distributed without any warranty.
  .
- You should have received a copy of the CC0 Public Domain Dedication along
- with this software. If not, see
- <http://creativecommons.org/publicdomain/zero/1.0/>.
+ The full text of the CC0 1.0 Universal license is available on Debian systems
+ in /usr/share/common-licenses/CC0-1.0
 
 
 License: ISC
