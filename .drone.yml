@@ -47,8 +47,5 @@ pipeline:
 
 matrix:
   SERIES:
-    - xenial
-    - zesty
-    - artful
-    - trusty
-    - precise
+    - bionic
+    - cosmic
