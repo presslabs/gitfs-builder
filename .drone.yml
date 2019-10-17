@@ -49,3 +49,5 @@ matrix:
   SERIES:
     - bionic
     - cosmic
+    - disco
+    - eoan
