@@ -1,27 +1,27 @@
 # vim: set ft=make:
 
-GITFS_VERSION := 0.4.5.1
+GITFS_VERSION := 0.5.0
 
 DEPENDENCIES := libgit2
 LIBGIT2_VERSION := 0.28.3
 
 PACKAGES := atomiclong cffi fusepy pycparser pygit2 raven six contextlib2
 ATOMICLONG_VERSION := 0.1.1
-CFFI_VERSION := 1.7.0
-FUSEPY_VERSION := 2.0.2
-PYCPARSER_VERSION := 2.14
-PYGIT2_VERSION := 0.24.1
-RAVEN_VERSION := 5.27.0
-SIX_VERSION := 1.10.0
+CFFI_VERSION := 1.12.3
+FUSEPY_VERSION := 3.0.1
+PYCPARSER_VERSION := 2.19
+PYGIT2_VERSION := 0.28.2
+RAVEN_VERSION := 6.10.0
+SIX_VERSION := 1.11.0
 CONTEXTLIB2_VERSION := 0.5.4
 
 GITFS_URL := https://github.com/Presslabs/gitfs/archive/$(GITFS_VERSION).tar.gz
 LIBGIT2_URL := https://github.com/libgit2/libgit2/archive/v$(LIBGIT2_VERSION).tar.gz
 ATOMICLONG_URL := https://pypi.python.org/packages/source/a/atomiclong/atomiclong-$(ATOMICLONG_VERSION).tar.gz
-CFFI_URL := https://pypi.python.org/packages/83/3c/00b553fd05ae32f27b3637f705c413c4ce71290aa9b4c4764df694e906d9/cffi-$(CFFI_VERSION).tar.gz
-FUSEPY_URL := https://github.com/terencehonles/fusepy/archive/v$(FUSEPY_VERSION).tar.gz
+CFFI_URL := https://files.pythonhosted.org/packages/93/1a/ab8c62b5838722f29f3daffcc8d4bd61844aa9b5f437341cc890ceee483b/cffi-$(CFFI_VERSION).tar.gz
+FUSEPY_URL := https://files.pythonhosted.org/packages/04/0b/4506cb2e831cea4b0214d3625430e921faaa05a7fb520458c75a2dbd2152/fusepy-$(FUSEPY_VERSION).tar.gz
 PYCPARSER_URL := https://github.com/eliben/pycparser/archive/release_v$(PYCPARSER_VERSION).tar.gz
 PYGIT2_URL := https://github.com/libgit2/pygit2/archive/v$(PYGIT2_VERSION).tar.gz
 RAVEN_URL := https://github.com/getsentry/raven-python/archive/$(RAVEN_VERSION).tar.gz
-SIX_URL := https://pypi.python.org/packages/b3/b2/238e2590826bfdd113244a40d9d3eb26918bd798fc187e2360a8367068db/six-$(SIX_VERSION).tar.gz
+SIX_URL := https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-$(SIX_VERSION).tar.gz
 CONTEXTLIB2_URL := https://pypi.python.org/packages/cc/19/0bee3b2ea499f7fb2480b6b3f4ae7951e111d6b73785ba53c6afeba55672/contextlib2-$(CONTEXTLIB2_VERSION).tar.gz#md5=2d66215f9902c8b857688d4e3b527b3f

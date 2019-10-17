@@ -15,8 +15,8 @@ export LC_ALL=en_US.UTF-8
 	dh $@
 
 override_dh_auto_configure:
-	@echo "[easy_install]" > $(HOME)/.pydistutils.cfg
-	@echo "allow_hosts = ''" >> $(HOME)/.pydistutils.cfg
-	@echo "find_links = file://$(shell pwd)/debian/packages/" >> $(HOME)/.pydistutils.cfg
+	@echo "[easy_install]" >> $(shell pwd)/.pydistutils.cfg
+	@echo "allow_hosts = ''" >> $(shell pwd)/.pydistutils.cfg
+	@echo "find_links = file://$(shell pwd)/debian/packages/" >> $(shell pwd)/.pydistutils.cfg
 
 override_dh_auto_test:

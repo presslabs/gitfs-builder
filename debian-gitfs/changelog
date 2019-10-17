@@ -1,3 +1,15 @@
+gitfs (0.5.0-bionic~ppa8) bionic; urgency=low
+
+  * New upstream version 0.5.0
+  * Update pygit2 to 0.28.2
+  * Update cffi to 1.12.3
+  * Update fusepy to 3.0.1
+  * Update pycparser to 2.19
+  * Update raven to 6.10.0
+  * Update six to 1.12.0
+
+ -- Vlad Temian <vlad@presslabs.com>  Thu, 17 Oct 2019 13:55:00 +0000
+
 gitfs (0.4.1-vivid~ppa6) vivid; urgency=low
 
   * add credentials to push and fetch operations #226 (hotfix)

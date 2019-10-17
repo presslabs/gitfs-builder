@@ -7,7 +7,7 @@
 -$(BUILD_DIR)/gitfs: $(BUILD_DIR) $(VIRTUAL_ENV)/bin/pex
 -	$(VIRTUAL_ENV)/bin/pex -v --disable-cache -r requirements.txt -e gitfs:mount -o $(BUILD_DIR)/gitfs .
 +$(BUILD_DIR)/gitfs: $(BUILD_DIR)
-+	/usr/bin/pex -v --cache-dir=debian/packages/ --repo=debian/packages/ -r 'fusepy==2.0.2' -r 'pygit2==0.24.1' -r 'atomiclong==0.1.1' -r 'raven==5.27.0' -r 'six==1.10.0' -s . -e gitfs:mount -o $(BUILD_DIR)/gitfs
++	export HOME=$(shell pwd) && /usr/bin/pex -v --cache-dir=$(shell pwd)/debian/packages/ --repo=$(shell pwd)/debian/packages/ --no-pypi --no-wheel --find-links=$(shell pwd)/debian/packages/ -r requirements.txt . -m gitfs:mount -o $(BUILD_DIR)/gitfs
 
  $(VIRTUAL_ENV)/bin/pex: virtualenv
  	$(VIRTUAL_ENV)/bin/pip install pex wheel

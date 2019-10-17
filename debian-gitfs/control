@@ -1,5 +1,5 @@
 Source: gitfs
-Maintainer: PressLabs <ping@presslabs.com>
+Maintainer: Presslabs <ping@presslabs.com>
 Section: python
 Priority: optional
 Build-Depends: debhelper (>= 7.4.3), python (>= 2.7), python-dev, python3-dev,
@@ -8,8 +8,8 @@ Standards-Version: 3.9.3
 
 Package: gitfs
 Architecture: any
-Depends: ${misc:Depends}, fuse, libgit2, python-dev
+Depends: ${misc:Depends}, fuse, libgit2-28, python-dev, python3-distutils
 Description: Mount git repositories as local folders
  gitfs is a FUSE file system that fully integrates with git. You can mount a
  remote repository's branch locally, and any subsequent changes made to the
- files will be automatically committed to the remote.
+ files will be automatically committed and pushed to the remote.
