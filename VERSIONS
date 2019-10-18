@@ -1,6 +1,6 @@
 # vim: set ft=make:
 
-GITFS_VERSION := 0.5.0
+GITFS_VERSION := 0.5.1
 
 DEPENDENCIES := libgit2
 LIBGIT2_VERSION := 0.28.3
