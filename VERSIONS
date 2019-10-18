@@ -1,6 +1,6 @@
 # vim: set ft=make:
 
-GITFS_VERSION := 0.5.0
+GITFS_VERSION := 0.5.1
 
 DEPENDENCIES := libgit2
 LIBGIT2_VERSION := 0.28.3
@@ -12,7 +12,7 @@ FUSEPY_VERSION := 3.0.1
 PYCPARSER_VERSION := 2.19
 PYGIT2_VERSION := 0.28.2
 RAVEN_VERSION := 6.10.0
-SIX_VERSION := 1.11.0
+SIX_VERSION := 1.12.0
 CONTEXTLIB2_VERSION := 0.5.4
 
 GITFS_URL := https://github.com/Presslabs/gitfs/archive/$(GITFS_VERSION).tar.gz
@@ -23,5 +23,5 @@ FUSEPY_URL := https://files.pythonhosted.org/packages/04/0b/4506cb2e831cea4b0214
 PYCPARSER_URL := https://github.com/eliben/pycparser/archive/release_v$(PYCPARSER_VERSION).tar.gz
 PYGIT2_URL := https://github.com/libgit2/pygit2/archive/v$(PYGIT2_VERSION).tar.gz
 RAVEN_URL := https://github.com/getsentry/raven-python/archive/$(RAVEN_VERSION).tar.gz
-SIX_URL := https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-$(SIX_VERSION).tar.gz
+SIX_URL := https://files.pythonhosted.org/packages/dd/bf/4138e7bfb757de47d1f4b6994648ec67a51efe58fa907c1e11e350cddfca/six-$(SIX_VERSION).tar.gz
 CONTEXTLIB2_URL := https://pypi.python.org/packages/cc/19/0bee3b2ea499f7fb2480b6b3f4ae7951e111d6b73785ba53c6afeba55672/contextlib2-$(CONTEXTLIB2_VERSION).tar.gz#md5=2d66215f9902c8b857688d4e3b527b3f
