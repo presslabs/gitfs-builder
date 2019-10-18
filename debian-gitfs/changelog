@@ -1,3 +1,10 @@
+gitfs (0.5.1-bionic~ppa5) bionic; urgency=low
+
+  * New upstream version 0.5.1
+  * Downgrade six to 1.11.0
+
+ -- Vlad Temian <vlad@presslabs.com>  Sat, 19 Oct 2019 18:50:00 +0000
+
 gitfs (0.5.0-bionic~ppa8) bionic; urgency=low
 
   * New upstream version 0.5.0
