@@ -1,0 +1,11 @@
+python-pex (1.16.2~bionic) bionic; urgency=low
+
+  * New upstream version 1.6.12
+
+ -- Vlad Temian <vlad@presslabs.com>  Wed, 23 Oct 2019 15:08:46 +0000
+
+python-pex (0.7.0-1~trusty1) trusty; urgency=low
+
+  * Initial python-pex package for ubuntu
+
+ -- Calin Don <calin@presslabs.com>  Wed, 08 Oct 2014 21:04:46 +0000

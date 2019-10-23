@@ -1,0 +1,18 @@
+Source: python-pex
+Maintainer: Presslabs <ping@presslabs.com>
+Section: python
+Priority: optional
+Build-Depends: python-setuptools (>= 2.2), python-all (>= 2.6.6-3), debhelper (>= 7.4.3)
+Standards-Version: 3.9.1
+
+Package: python-pex
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, python-setuptools (>= 2.2), python-wheel (>= 0.24.0), python-wheel (< 0.25.0)
+Description: The PEX packaging toolchain.
+ pex contains the Python packaging and distribution libraries originally
+ available through the twitter commons but since split out into a separate
+ project. The most notable components of the pex library are the .pex (Python
+ EXecutable) format and the associated pex tool which provide a general purpose
+ Python environment virtualization solution similar in spirit to virtualenv. PEX
+ files have been used by Twitter to deploy Python applications to production
+ since 2011.
