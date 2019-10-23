@@ -1,0 +1,157 @@
+python-pex (1.6.12-2ubuntu1) bionic; urgency=medium
+
+  * New upstream version 1.6.12
+
+ -- Vlad Temian <vlad@presslabs.com>  Wed, 23 Oct 2019 15:08:46 +0000
+
+python-pex (1.1.14-2ubuntu2) artful; urgency=medium
+
+  * debian/patches/343.patch:
+    - Fix another python3.6 failure, related to upstream issue 29130
+      https://bugs.python.org/issue29130
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 24 Jul 2017 12:49:21 +0200
+
+python-pex (1.1.14-2ubuntu1) artful; urgency=medium
+
+  * debian/patches/c5ab73fd4d8e816e21a89d48c8d0c8095ef5a49c.patch:
+    - fix build and testsuite with python3.6 with upstream cherry-pick
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 24 Jul 2017 11:10:09 +0200
+
+python-pex (1.1.14-2) unstable; urgency=medium
+
+  * d/patches/update-dependencies.patch: Remove ceiling dependency
+    versions since we have (or may eventually have) newer versions
+    which are still compatible.  This prevents trying to hit PyPI for
+    setuptools and wheel dependencies we still satisfy.  
+    (Closes: #838559)
+  * d/control: pex works better with requests, so add python3-requests
+    to Depends.
+
+ -- Barry Warsaw <barry@debian.org>  Thu, 22 Sep 2016 11:43:40 -0400
+
+python-pex (1.1.14-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Barry Warsaw <barry@debian.org>  Wed, 03 Aug 2016 13:11:56 -0400
+
+python-pex (1.1.6-1) unstable; urgency=medium
+
+  * New upstream release.
+  * d/patches/bump-setuptools-max-version.patch: Deleted; applied upstream.
+  * d/control:
+    - Bump Standards-Version to 3.9.8 with no other changes needed.
+    - Remove XS-Testsuite as it's now redundant.
+
+ -- Barry Warsaw <barry@debian.org>  Mon, 09 May 2016 16:40:26 -0400
+
+python-pex (1.1.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * d/patches/bump-setuptools-max-version.patch: Update setuptools versions.
+
+ -- Barry Warsaw <barry@debian.org>  Tue, 22 Mar 2016 13:20:30 -0400
+
+python-pex (1.1.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * d/control:
+    - Bump Standards-Version to 3.9.7 with no other changes needed.
+    - Update Vcs-Git header to https URL as per style guide.
+  * d/tests/{control,execute.sh}: Revert Ubuntu accommodations.
+  * d/patches: Updated by git-dpm.
+  * d/rules: in override_dh_auto_clean, there's no need to remove the
+    build/ directory explicitly, but we do need to remove the pex.1 file.
+
+ -- Barry Warsaw <barry@debian.org>  Mon, 22 Feb 2016 16:17:28 -0500
+
+python-pex (1.1.0-2) unstable; urgency=medium
+
+  * d/control: Canonicalize the Vcs-* headers as per team standard.
+  * d/patches/bump-wheel-requirement-version.patch: Added.
+  * d/README.pex: Removed; upstream now includes the docs directory.
+  * d/python-pex-docs -> python-pex-doc.docs; fix the path.
+  * d/rules:
+    - Added override_dh_installdocs to build the Sphinx documentation.
+    - Added override_dh_auto_clean to remove the doc build directory.
+  * d/tests:
+    - Rewrite the execution test so that it's compatible between both
+      Ubuntu and Debian, negating the need for an Ubuntu delta.  The extra
+      required package is now conditionally installed depending on the
+      dpkg-vendor.  Also, by setting http_proxy and https_proxy to the
+      discard port, we ensure that pex cannot install from PyPI (it must
+      use system packages to resolve dependencies in the test).
+    - d/t/execute.sh: Added.
+    - d/t/control: Call execute.sh instead of using a Test-Command, and
+      add the needs-root Restriction (for the conditional `apt-get
+      install` in the script).
+
+ -- Barry Warsaw <barry@debian.org>  Thu, 15 Oct 2015 11:47:26 -0400
+
+python-pex (1.1.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * d/control: Added python3-pkg-resources to pex Depends.
+
+ -- Barry Warsaw <barry@debian.org>  Mon, 12 Oct 2015 16:24:02 -0400
+
+python-pex (1.0.3-2) unstable; urgency=medium
+
+  * d/control:
+    - Rename python-pex-cli binary package to pex.  This now replaces/breaks
+      earlier versions of python-pex-cli.  (Closes: #801246)
+    - Reintroduce python-pex-cli binary package as a virtual package.
+  * d/rules:
+    - Updated for binary package rename.
+  * d/python-pex-cli.manpages -> d/pex.manpages.
+  * d/tests/control:
+    - Use Test-Command instead of a separate script.
+    - Bump pex verbosity in the execution test.
+    - Add "Restrictions: allow-stderr" for verbose execution test.
+    - Add import tests for Python 2 and 3.
+  * d/tests/smoketest: Remove.
+
+ -- Barry Warsaw <barry@debian.org>  Tue, 06 Oct 2015 16:02:46 -0400
+
+python-pex (1.0.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * d/patches/bump-setuptools-max-version.patch: Bump the maximum allowed
+    setuptools version to coincide with what's in Debian, which allows the
+    manpages to be built. (Closes: #792521)
+  * d/rules: Remove the overrides for upstream issue #51, which has been
+    fixed released.
+
+ -- Barry Warsaw <barry@debian.org>  Thu, 13 Aug 2015 17:16:14 -0400
+
+python-pex (1.0.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Barry Warsaw <barry@debian.org>  Fri, 17 Jul 2015 16:29:53 -0400
+
+python-pex (1.0.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * d/control, d/tests: Add a simple DEP-8 smoketest.
+  * d/copyright: Reorganize to make lintian happy.
+
+ -- Barry Warsaw <barry@debian.org>  Tue, 02 Jun 2015 15:02:50 -0400
+
+python-pex (0.8.6-2) unstable; urgency=medium
+
+  * d/patches/handle-pkg_resources-devendorization.patch: Work around
+    the Debian devendorization of pkg_resources, which wreaks havoc
+    with the manipulations of sys that pex employs.  (Closes: #781130)
+  * d/patches/modern-install-requires.patch: Allow for setuptools
+    12.2, fixing the manpage build.  (LP: #1435598)
+
+ -- Barry Warsaw <barry@debian.org>  Wed, 25 Mar 2015 10:58:36 -0400
+
+python-pex (0.8.6-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #778708)
+
+ -- Barry Warsaw <barry@debian.org>  Thu, 19 Feb 2015 14:13:25 -0500

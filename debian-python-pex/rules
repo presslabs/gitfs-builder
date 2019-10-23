@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=pex
+export DH_VERBOSE=1
+
+export pkgversion=$(shell dpkg-parsechangelog --show-field version)
+
+
+%:
+	dh $@ --with python2,python3,sphinxdoc --buildsystem=pybuild
+
+override_dh_auto_install:
+	dh_auto_install
+	# Use the Python 3 version of /usr/bin/pex
+	mkdir -p debian/pex/usr/bin
+	cp debian/python3-pex/usr/bin/pex debian/pex/usr/bin
+	rm -rf debian/python3-pex/usr/bin
+	rm -rf debian/python-pex/usr/bin
+
+override_dh_installdocs:
+	PYTHONPATH=. sphinx-build -N -bhtml docs build
+	dh_installdocs
+
+override_dh_installman:
+	PYTHONPATH=$(CURDIR) help2man -n pex -s 1 -o debian/pex.1 \
+		--version-string=$(pkgversion) \
+		--no-discard-stderr --no-info \
+		debian/pex/usr/bin/pex
+	dh_installman
+
+override_dh_auto_clean:
+	rm -f debian/pex.1
+	dh_auto_clean

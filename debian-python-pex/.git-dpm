@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+81196546a2dec229cee10acf058e2b86a7daca1d
+81196546a2dec229cee10acf058e2b86a7daca1d
+d17165483693016fbaced1cf900a880d70cedc61
+d17165483693016fbaced1cf900a880d70cedc61
+python-pex_1.1.14.orig.tar.gz
+8abf61dead6c2db4da92f2874794333b50164ee9
+480891
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"

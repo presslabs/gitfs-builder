@@ -1,0 +1,8 @@
+Tests: execute.sh
+Restrictions: allow-stderr
+Depends: @, dpkg-dev
+
+Test-Command: python -c "import pex; print pex"
+Depends: @
+
+Test-Command: python3 -c "import pex; print(pex)"

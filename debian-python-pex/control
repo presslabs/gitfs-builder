@@ -1,0 +1,106 @@
+Source: python-pex
+Maintainer: Barry Warsaw <barry@debian.org>
+Uploaders: Debian Python Modules Team
+           <python-modules-team@lists.alioth.debian.org>
+Homepage: https://github.com/pantsbuild/pex
+Section: python
+X-Python-Version: >= 2.7
+X-Python3-Version: >= 3.4
+Priority: optional
+Build-Depends: debhelper (>= 9),
+               dh-python,
+               help2man,
+               python-all (>= 2.6.6-3~),
+               python-setuptools,
+               python-sphinx (>= 1.0.7+dfsg-1~),
+               python3-all,
+               python3-setuptools,
+               python3-wheel
+Standards-Version: 3.9.8
+Vcs-Git: https://anonscm.debian.org/git/python-modules/packages/python-pex.git
+Vcs-Browser: https://anonscm.debian.org/cgit/python-modules/packages/python-pex.git
+
+Package: python-pex
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Suggests: python-pex-doc
+Description: library for generating Python executable zip files
+ pex is a library for generating .pex (Python EXecutable) files which
+ are executable Python environments in the spirit of virtualenvs.  pex
+ is an expansion upon the ideas outlined in PEP 441 and makes the
+ deployment of Python applications as simple as cp.  pex files may even
+ include multiple platform-specific Python distributions, meaning that
+ a single pex file can be portable across Linux and OS X.
+ .
+ pex files can be built using the pex tool.  Build systems such as
+ Pants and Buck also support building .pex files directly.
+ .
+ This is the Python 2 library version.
+
+Package: python3-pex
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends}
+Suggests: python-pex-doc
+Description: library for generating Python executable zip files
+ pex is a library for generating .pex (Python EXecutable) files which
+ are executable Python environments in the spirit of virtualenvs.  pex
+ is an expansion upon the ideas outlined in PEP 441 and makes the
+ deployment of Python applications as simple as cp.  pex files may even
+ include multiple platform-specific Python distributions, meaning that
+ a single pex file can be portable across Linux and OS X.
+ .
+ pex files can be built using the pex tool.  Build systems such as
+ Pants and Buck also support building .pex files directly.
+ .
+ This is the Python 3 library version.
+
+Package: pex
+Architecture: all
+Depends: python3,
+         python3-pex,
+         python3-pkg-resources,
+         python3-requests,
+         python3-setuptools,
+         python3-wheel,
+         ${misc:Depends},
+         ${python3:Depends}
+Replaces: python-pex-cli (<< 1.0.3-2~)
+Breaks: python-pex-cli (<< 1.0.3-2~)
+Suggests: python-pex-doc
+Description: library for generating Python executable zip files
+ pex is a library for generating .pex (Python EXecutable) files which
+ are executable Python environments in the spirit of virtualenvs.  pex
+ is an expansion upon the ideas outlined in PEP 441 and makes the
+ deployment of Python applications as simple as cp.  pex files may even
+ include multiple platform-specific Python distributions, meaning that
+ a single pex file can be portable across Linux and OS X.
+ .
+ pex files can be built using the pex tool.  Build systems such as
+ Pants and Buck also support building .pex files directly.
+ .
+ This is the command line package.
+
+Package: python-pex-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, ${sphinxdoc:Depends}
+Description: library for generating Python executable zip files
+ pex is a library for generating .pex (Python EXecutable) files which
+ are executable Python environments in the spirit of virtualenvs.  pex
+ is an expansion upon the ideas outlined in PEP 441 and makes the
+ deployment of Python applications as simple as cp.  pex files may even
+ include multiple platform-specific Python distributions, meaning that
+ a single pex file can be portable across Linux and OS X.
+ .
+ pex files can be built using the pex tool.  Build systems such as
+ Pants and Buck also support building .pex files directly.
+ .
+ This is the common documentation package.
+
+Package: python-pex-cli
+Depends: pex, ${misc:Depends}
+Architecture: all
+Priority: extra
+Section: oldlibs
+Description: transitional dummy package for pex
+ This is a transitional dummy package.  It can safely be removed.

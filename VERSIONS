@@ -2,7 +2,8 @@
 
 GITFS_VERSION := 0.5.2
 
-DEPENDENCIES := libgit2
+DEPENDENCIES := libgit2 python-pex
+PYTHON_PEX_VERSION := 1.6.12
 LIBGIT2_VERSION := 0.28.3
 
 PACKAGES := atomiclong cffi fusepy pycparser pygit2 raven six contextlib2
@@ -17,6 +18,8 @@ CONTEXTLIB2_VERSION := 0.5.4
 
 GITFS_URL := https://github.com/Presslabs/gitfs/archive/$(GITFS_VERSION).tar.gz
 LIBGIT2_URL := https://github.com/libgit2/libgit2/archive/v$(LIBGIT2_VERSION).tar.gz
+PYTHON_PEX_URL := https://github.com/pantsbuild/pex/archive/v$(PYTHON_PEX_VERSION).tar.gz
+
 ATOMICLONG_URL := https://pypi.python.org/packages/source/a/atomiclong/atomiclong-$(ATOMICLONG_VERSION).tar.gz
 CFFI_URL := https://files.pythonhosted.org/packages/93/1a/ab8c62b5838722f29f3daffcc8d4bd61844aa9b5f437341cc890ceee483b/cffi-$(CFFI_VERSION).tar.gz
 FUSEPY_URL := https://files.pythonhosted.org/packages/04/0b/4506cb2e831cea4b0214d3625430e921faaa05a7fb520458c75a2dbd2152/fusepy-$(FUSEPY_VERSION).tar.gz

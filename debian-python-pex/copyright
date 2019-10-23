@@ -1,0 +1,15 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: pex
+Source: https://pypi.python.org/pypi/pex
+
+Files: *
+Copyright: Copyright 2014 Pants project contributors (see CONTRIBUTORS.md).
+License: Apache-2.0
+
+Files: debian/*
+Copyright: 2015 Barry A. Warsaw
+License: Apache-2.0
+
+License: Apache-2.0
+ On Debian-based systems the full text of the Apache 2.0 license can be found
+ at /usr/share/common-licenses/Apache-2.0

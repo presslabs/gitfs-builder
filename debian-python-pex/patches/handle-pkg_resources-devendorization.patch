@@ -1,0 +1,36 @@
+From ecb9787a2bbdbfc8076dd96af47946e21142ffb3 Mon Sep 17 00:00:00 2001
+From: Barry Warsaw <barry@debian.org>
+Date: Thu, 13 Aug 2015 18:21:53 -0400
+Subject: Work around Debian's devendorizing of pkg_resource dependencies.
+
+Forwarded: not-needed
+Patch-Name: handle-pkg_resources-devendorization.patch
+---
+ pex/pex_bootstrapper.py | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/pex/pex_bootstrapper.py b/pex/pex_bootstrapper.py
+index ea5f832..c67d7fc 100644
+--- a/pex/pex_bootstrapper.py
++++ b/pex/pex_bootstrapper.py
+@@ -206,6 +206,20 @@ def bootstrap_pex(entry_point):
+   pex_info = _bootstrap(entry_point)
+   maybe_reexec_pex(pex_info.interpreter_constraints)
+
++  # 2015-03-24 BAW (Debian/Ubuntu): This will make grown Pythonistas weep.  In
++  # Debian, we devendorize pkg_resources by removing all its bundled
++  # dependencies and making it use the system versions.  This plays havoc with
++  # pex though, because pex messes with sys.path and sys.modules and ends up
++  # double importing sub-modules from pkg_resources.  This confuses Python
++  # deeply, resulting in AttributeError tracebacks when pkg_resources itself
++  # tries to dig sub-modules out of its own namespace.  Yes, AttributeErrors,
++  # not ImportErrors.  By pure trial and error, this seems to work around the
++  # problem.
++  import sys
++  for modname in list(sys.modules):
++    if modname.startswith('pkg_resources.'):
++      del sys.modules[modname]
++
+   from . import pex
+   pex.PEX(entry_point).execute()
+ 
