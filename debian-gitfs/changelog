@@ -1,8 +1,8 @@
-gitfs (0.5.2-bionic~ppa2) bionic; urgency=low
+gitfs (0.5.2-bionic~ppa3) bionic; urgency=low
 
   * New upstream version 0.5.2
 
- -- Vlad Temian <vlad@presslabs.com>  Sun, 20 Oct 2019 12:53:00 +0000
+ -- Vlad Temian <vlad@presslabs.com>  Thu, 24 Oct 2019 12:13:00 +0000
 
 gitfs (0.5.1-bionic~ppa6) bionic; urgency=low
 

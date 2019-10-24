@@ -3,7 +3,7 @@ Maintainer: Presslabs <ping@presslabs.com>
 Section: python
 Priority: optional
 Build-Depends: debhelper (>= 7.4.3), python (>= 2.7), python-dev, python3-dev,
-    python-setuptools (>= 2.2), python-pex-cli | python-pex, fuse, libgit2-28, libgit2-dev, libffi-dev
+    python-setuptools (>= 2.2), python3-pex (>= 1.6.2), pex (>= 1.6.2), fuse, libgit2-28, libgit2-dev, libffi-dev
 Standards-Version: 3.9.3
 
 Package: gitfs
